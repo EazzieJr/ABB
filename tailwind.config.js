@@ -9,7 +9,11 @@ module.exports = {
   ],
   
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+      }
+    },
   },
   plugins: [],
 }

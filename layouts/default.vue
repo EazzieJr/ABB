@@ -1,10 +1,14 @@
 <template>
 	<div>
+		<Navigation />
+		
 		<nuxt />
 	</div>
 </template>
 
 <script>
+import Lenis from '@studio-freight/lenis'
+
 export default {
 	data() {
 		return {
