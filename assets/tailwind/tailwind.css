@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer base {
+	body {
+		@apply font-inter
+	}
 
 	.constraint {
 		@apply container mx-auto px-5
