@@ -24,6 +24,44 @@
             </div>
           </div>
         </div>
+
+        <div class="Marquees">
+          <div class="MarqueeOne start">
+            <div v-for="(marquee, index) in marqueeOne" :key="index" class="MarqueeItem start">
+              <div class="Icon">
+                <img :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
+              </div>
+
+              <span>
+                {{ marquee }}
+              </span>
+            </div>
+          </div>
+
+          <div class="MarqueeTwo start">
+            <div v-for="(marquee, index) in marqueeTwo" :key="index" class="MarqueeItem start">
+              <div class="Icon">
+                <img :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
+              </div>
+
+              <span>
+                {{ marquee }}
+              </span>
+            </div>
+          </div>
+
+          <div class="MarqueeThree start">
+            <div v-for="(marquee, index) in marqueeThree" :key="index" class="MarqueeItem start">
+              <div class="Icon">
+                <img :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
+              </div>
+
+              <span>
+                {{ marquee }}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     
@@ -117,10 +155,84 @@ export default {
       ],
 
       marqueeOne: [
-        {
-          name: "Home",
-          svg: "home"
-        }
+        "Home",
+        "Heart",
+        "Search",
+        "Trend down",
+        "Notification",
+        "Message",
+        "Circle slash",
+        "List",
+        "Home",
+        "Heart",
+        "Search",
+        "Trend down",
+        "Notification",
+        "Message",
+        "Circle slash",
+        "List",
+        "Home",
+        "Heart",
+        "Search",
+        "Trend down",
+        "Notification",
+        "Message",
+        "Circle slash",
+        "List",
+      ],
+
+      marqueeTwo: [
+        "Trend down",
+        "User",
+        "Map",
+        "Settings",
+        "Navigation",
+        "Bar chart",
+        "Pie chart",
+        "Search",
+        "Trend down",
+        "User",
+        "Map",
+        "Settings",
+        "Navigation",
+        "Bar chart",
+        "Pie chart",
+        "Search",
+        "Trend down",
+        "User",
+        "Map",
+        "Settings",
+        "Navigation",
+        "Bar chart",
+        "Pie chart",
+        "Search",
+      ],
+
+      marqueeThree: [
+        "Bar chart",
+        "Map point",
+        "Menu",
+        "List",
+        "Close",
+        "Trend down",
+        "Circle slash",
+        "Trend down",
+        "Bar chart",
+        "Map point",
+        "Menu",
+        "List",
+        "Close",
+        "Trend down",
+        "Circle slash",
+        "Trend down",
+        "Bar chart",
+        "Map point",
+        "Menu",
+        "List",
+        "Close",
+        "Trend down",
+        "Circle slash",
+        "Trend down",
       ]
     }
   },
@@ -154,7 +266,7 @@ export default {
           @apply grid grid-cols-1 md:grid-cols-2 gap-4;
 
           .Type {
-            @apply border border-white border-opacity-20 rounded-2xl xl:rounded-[25px] w-full py-10 lg:py-12 xl:py-16 pl-5 lg:pl-7 xl:pl-[30px] pr-5 xl:pr-0 space-y-5 lg:space-y-7 xl:space-y-[30px];
+            @apply border border-white border-opacity-20 rounded-2xl xl:rounded-[25px] w-full py-10 lg:py-12 xl:py-14 pl-5 lg:pl-7 xl:pl-[30px] pr-5 xl:pr-0 space-y-5 lg:space-y-7 xl:space-y-[30px];
 
             img {
               @apply w-16 lg:w-20 xl:w-[100px] 2xl:w-[120px]
@@ -170,6 +282,28 @@ export default {
               p {
                 @apply text-white text-opacity-50
               }
+            }
+          }
+        }
+      }
+
+      .Marquees {
+        @apply overflow-hidden space-y-5 lg:space-y-7 xl:space-y-10;
+
+        > div {
+          @apply space-x-5 lg:space-x-7 xl:space-x-10;
+
+          .MarqueeItem {
+            @apply shrink-0 space-x-2 xl:space-x-2.5 rounded-full border border-white border-opacity-20 bg-white bg-opacity-[0.01] p-2 xl:pl-2.5 xl:py-[9px] pr-4 xl:pr-5;
+
+            .Icon {
+              img {
+                @apply w-7 lg:w-8 xl:w-[38px]
+              }
+            }
+
+            span {
+              @apply font-inter text-sm lg:text-base xl:text-xl text-white text-opacity-[0.65]
             }
           }
         }
