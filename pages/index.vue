@@ -1,5 +1,43 @@
 <template>
   <div class="IndexPage">
+    <section class="Hero">
+      <div class="Container constraint">
+        <div class="TopLeft">
+          <div class="Texts">
+            <h1>
+              Explore my curated collections to find the perfect pairings
+            </h1>
+
+            <p>
+              250+ meticulously designed icons for seamless web, app, and mobile perfection. Suitable for any kind of project now available for download in your favourite format.
+            </p>
+          </div>
+          
+          <div class="Buttons start">
+            <button class="DownloadIcon">
+              Download Icon
+            </button>
+            
+            <button class="ContactMe">
+              Contact Me
+            </button>
+          </div>
+
+          <div class="Tools start">
+            <a v-for="tool in tools" :key="tool.name" :href="tool.link">
+              <img :src="`/svg/${tool.name}.svg`" alt="">
+            </a>
+          </div>
+        </div>
+
+        <div class="BottomRight">
+          <div class="Image">
+            <img src="/images/hero-temp.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <section class="Styles">
       <div class="Container">
         <div class="Top constraint">
@@ -233,6 +271,29 @@ export default {
         "Trend down",
         "Circle slash",
         "Trend down",
+      ],
+
+      tools: [
+        {
+          name: "figma",
+          link: "/"
+        },
+        {
+          name: "xd",
+          link: "/"
+        },
+        {
+          name: "sketch",
+          link: "/"
+        },
+        {
+          name: "illustrator",
+          link: "/"
+        },
+        {
+          name: "svg",
+          link: "/"
+        },
       ]
     }
   },
@@ -249,11 +310,54 @@ export default {
 
 <style lang="postcss" scoped>
 .IndexPage {
+  .Hero {
+    @apply md:h-[100svh] bg-[#F7F7F7] pt-10 md:pt-14 lg:pt-16 xl:pt-20 pb-10 md:pb-14 lg:pb-20 xl:pb-[100px];
+
+    .Container {
+      @apply space-y-8;
+      .TopLeft {
+        @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px];
+
+        .Texts {
+          @apply space-y-3 xl:space-y-5
+        }
+
+        .Buttons {
+          @apply space-x-5 font-inter;
+
+          .ContactMe, .DownloadIcon {
+            @apply font-semibold text-sm xl:text-[15px] 2xl:text-base !leading-[120%] rounded-lg xl:rounded-xl block w-fit text-primary;
+          }
+
+          .DownloadIcon {
+            @apply bg-secondary px-4 py-3.5 xl:px-5 xl:py-4
+          }
+
+          .ContactMe {
+            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] py-3.5 xl:py-4 px-5 xl:px-6 
+          }
+        }
+
+        .Tools {
+          @apply space-x-5 xl:space-x-[46px];
+
+          a {
+            @apply block;
+
+            img {
+              @apply w-11 xl:w-[55px]
+            }
+          }
+        }
+      }
+    }
+  }
+  
   .Styles {
     @apply bg-primary py-14 lg:py-20 xl:py-[100px];
 
     .Container {
-      @apply space-y-8  md:space-y-10 lg:space-y-11 xl:space-y-[50px];
+      @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px];
 
       .Top {
         @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-20;
