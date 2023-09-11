@@ -1,6 +1,6 @@
 <template>
 	<nav>
-		<div class="NavContainer">
+		<div class="NavContainer constraint">
 
 		</div>
 	</nav>
@@ -14,7 +14,9 @@ export default {
 
 <style lang="postcss">
 nav {
-	.MavContainer {
+	@apply bg-primary py-5;
+	
+	.NavContainer {
 		
 	}
 }

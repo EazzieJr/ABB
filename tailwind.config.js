@@ -12,7 +12,12 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
-      }
+      },
+
+      colors: {
+        primary: "#212121",
+        secondary: "#B1FC03",
+      },
     },
   },
   plugins: [],

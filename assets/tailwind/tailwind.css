@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+
+	.constraint {
+		@apply container mx-auto px-5
+	}
 }
 
 @layer utilities {
