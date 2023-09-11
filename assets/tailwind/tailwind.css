@@ -17,6 +17,10 @@
 	p {
 		@apply lg:text-lg xl:text-2xl !leading-[142%]
 	}
+
+	h1, h2, h3, h4, h5 {
+		@apply font-semibold text-[40px] md:text-6xl lg:text-7xl xl:text-[78px] font-interTight !leading-[118%]
+	}
 }
 
 @layer utilities {

@@ -73,7 +73,7 @@ footer {
 				@apply space-y-4 lg:space-y-6 xl:space-y-[30px];
 
 				h5 {
-					@apply text-white font-semibold text-5xl md:text-6xl lg:text-7xl xl:text-[78px] font-interTight !leading-[118%]
+					@apply text-white 
 				}
 
 				p {
