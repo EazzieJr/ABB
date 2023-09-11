@@ -1,8 +1,8 @@
 <template>
   <div class="IndexPage">
     <section class="Hero">
-      <div class="Container constraint">
-        <div class="TopLeft">
+      <div class="Container constraint lg:between">
+        <div class="TopLeft md:col-center lg:block">
           <div class="Texts">
             <h1>
               Explore my curated collections to find the perfect pairings
@@ -311,15 +311,15 @@ export default {
 <style lang="postcss" scoped>
 .IndexPage {
   .Hero {
-    @apply md:h-[100svh] bg-[#F7F7F7] pt-10 md:pt-14 lg:pt-16 xl:pt-20 pb-10 md:pb-14 lg:pb-20 xl:pb-[100px];
+    @apply lg:h-[100svh] bg-[#F7F7F7] pt-10 md:pt-14 lg:pt-16 xl:pt-20 pb-10 md:pb-14 lg:pb-20 xl:pb-[100px];
 
     .Container {
-      @apply space-y-8;
+      @apply space-y-8 lg:space-y-0 lg:space-x-10;
       .TopLeft {
-        @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px];
+        @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px] lg:w-[55%] xl:w-[698px] 2xl:w-[770px] shrink-0;
 
         .Texts {
-          @apply space-y-3 xl:space-y-5
+          @apply space-y-3 xl:space-y-5 md:text-center lg:text-left md:w-3/4 lg:w-auto
         }
 
         .Buttons {
@@ -347,6 +347,16 @@ export default {
             img {
               @apply w-11 xl:w-[55px]
             }
+          }
+        }
+      }
+
+      .BottomRight {
+        .Image {
+          @apply lg:-mr-5 xl:-mr-[100px];
+
+          img {
+            @apply md:w-[400px] lg:w-auto mx-auto lg:mx-0
           }
         }
       }
