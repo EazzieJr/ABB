@@ -1,6 +1,30 @@
 <template>
   <div class="IndexPage">
     <section class="Styles">
+      <div class="Container">
+        <div class="Top constraint">
+          <h2>
+            Two Dynamic Styles <br class="hidden md:block">
+            Where Linear Meets Bold
+          </h2>
+
+          <div class="StyleTypes">
+            <div v-for="(style, index) in styleTypes" :key="index" class="Type">
+              <img :src="`/svg/${style.type}.svg`" alt="">
+
+              <div class="Texts">
+                <span>
+                  {{ style.type }}
+                </span>
+
+                <p>
+                  {{ style.deats }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     
     <section class="About">
@@ -78,6 +102,25 @@ export default {
           name: "Checkered Bag",
           bg: true
         },
+      ],
+
+      styleTypes: [
+        {
+          type: "linear",
+          deats: "Elegant and adaptable for today's design needs."
+        },
+
+        {
+          type: "bold",
+          deats: "Bold icons for attention-grabbing projects."
+        }
+      ],
+
+      marqueeOne: [
+        {
+          name: "Home",
+          svg: "home"
+        }
       ]
     }
   },
@@ -94,6 +137,46 @@ export default {
 
 <style lang="postcss" scoped>
 .IndexPage {
+  .Styles {
+    @apply bg-primary py-14 lg:py-20 xl:py-[100px];
+
+    .Container {
+      @apply space-y-8  md:space-y-10 lg:space-y-11 xl:space-y-[50px];
+
+      .Top {
+        @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-20;
+
+        h2 {
+          @apply text-white
+        }
+
+        .StyleTypes {
+          @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+
+          .Type {
+            @apply border border-white border-opacity-20 rounded-2xl xl:rounded-[25px] w-full py-10 lg:py-12 xl:py-16 pl-5 lg:pl-7 xl:pl-[30px] pr-5 xl:pr-0 space-y-5 lg:space-y-7 xl:space-y-[30px];
+
+            img {
+              @apply w-16 lg:w-20 xl:w-[100px] 2xl:w-[120px]
+            }
+
+            .Texts {
+              @apply space-y-3 xl:space-y-5;
+
+              span {
+                @apply block font-interTight font-semibold text-white text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl capitalize;
+              }
+
+              p {
+                @apply text-white text-opacity-50
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
   .About {
     @apply my-16 md:my-20 lg:my-24 xl:my-[120px];
     
