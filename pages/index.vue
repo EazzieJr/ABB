@@ -469,7 +469,7 @@ export default {
         @apply grid grid-cols-1 md:grid-cols-2 gap-5;
 
         .Product {
-          @apply rounded-[16px] lg:rounded-[30px] max-w-[335px] md:max-w-none h-[355px] md:h-[376px] lg:h-[512px] xl:h-[648px] 2xl:h-[720px] overflow-hidden relative;
+          @apply rounded-[16px] lg:rounded-[30px] w-full max-w-[335px] md:max-w-none h-[355px] md:h-[376px] lg:h-[512px] xl:h-[648px] 2xl:h-[720px] overflow-hidden relative place-self-center md:place-self-auto;
 
           .BgImage {
             @apply absolute object-cover object-center w-full h-full
