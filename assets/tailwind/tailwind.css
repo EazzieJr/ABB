@@ -11,7 +11,7 @@
 	}
 
 	.constraint {
-		@apply container mx-auto px-5
+		@apply container mx-auto px-5 2xl:px-20
 	}
 
 	p {
@@ -19,7 +19,7 @@
 	}
 
 	h1, h2, h3, h4, h5 {
-		@apply font-semibold text-[40px] md:text-6xl lg:text-7xl xl:text-[78px] font-interTight !leading-[118%]
+		@apply font-semibold text-[40px] md:text-6xl lg:text-7xl xl:text-[78px] 2xl:text-[84px] font-interTight !leading-[118%]
 	}
 }
 
