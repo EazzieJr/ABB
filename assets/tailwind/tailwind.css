@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600&display=swap');
 
 @tailwind base;
@@ -12,6 +12,10 @@
 
 	.constraint {
 		@apply container mx-auto px-5
+	}
+
+	p {
+		@apply lg:text-lg xl:text-2xl !leading-[142%]
 	}
 }
 

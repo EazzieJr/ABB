@@ -16,13 +16,46 @@
 					Contact Me
 				</button>
 			</div>
+
+			<div class="Bottom md:between">
+				<span class="Copyright">
+					© {{new Date().getFullYear()}} ABB Inc. All Rights Reserved
+				</span>
+
+				<div class="Links center md:start">
+					<a v-for="link in links" :key="link.name" :href="link.link" class="Link">
+						<img :src="`/svg/${link.name}.svg`" :alt="`An incon representing ${link.name}`">
+					</a>
+				</div>
+			</div>
 		</div>
 	</footer>
 </template>
 
 <script>
 export default {
-
+	data() {
+		return {
+			links: [
+				{
+					name: "dribbble",
+					link: ""
+				},
+				{
+					name: "instagram",
+					link: ""
+				},
+				{
+					name: "linkedin",
+					link: ""
+				},
+				{
+					name: "twitter",
+					link: ""
+				},
+			]
+		}
+	}
 }
 </script>
 
@@ -31,7 +64,7 @@ footer {
 	@apply bg-primary;
 
 	.Container {
-		@apply pt-16 md:pt-20 lg:pt-24 xl:pt-[120px];
+		@apply pt-16 md:pt-20 lg:pt-24 xl:pt-[120px] pb-9 space-y-40 lg:space-y-48 xl:space-y-[198px];
 
 		.Top {
 			@apply space-y-7 lg:space-y-10 xl:space-y-[50px] text-center;
@@ -40,7 +73,35 @@ footer {
 				@apply space-y-4 lg:space-y-6 xl:space-y-[30px];
 
 				h5 {
-					@apply text-white font-semibold text-5xl xl:text-[78px]
+					@apply text-white font-semibold text-5xl md:text-6xl lg:text-7xl xl:text-[78px] font-interTight !leading-[118%]
+				}
+
+				p {
+					@apply text-white
+				}
+			}
+
+			button {
+				@apply px-9 lg:px-10 xl:px-[50px] py-3.5 lg:py-4 xl:py-5 rounded-[10px] bg-secondary font-semibold text-primary
+			}
+		}
+		
+		.Bottom {
+			@apply space-y-5 md:space-y-0;
+
+			.Copyright {
+				@apply text-center text-sm !leading-[157%] text-[#C7C3C3] font-medium block md:text-left
+			}
+
+			.Links {
+				@apply space-x-3.5 xl:space-x-4;
+
+				.Link {
+					@apply rounded-[15px] px-4 py-3.5 border border-white border-opacity-40;
+
+					img {
+						@apply w-5 xl:w-6
+					}
 				}
 			}
 		}
