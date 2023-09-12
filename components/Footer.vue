@@ -29,6 +29,8 @@
 				</div>
 			</div>
 		</div>
+
+		<img src="/svg/footer-bg.svg" alt="" class="BG">
 	</footer>
 </template>
 
@@ -61,10 +63,10 @@ export default {
 
 <style lang="postcss" scoped>
 footer {
-	@apply bg-primary;
+	@apply bg-primary relative;
 
 	.Container {
-		@apply pt-16 md:pt-20 lg:pt-24 xl:pt-[120px] pb-9 space-y-40 lg:space-y-48 xl:space-y-[198px];
+		@apply pt-16 md:pt-20 lg:pt-24 xl:pt-[120px] pb-9 space-y-40 lg:space-y-48 xl:space-y-[198px] relative z-50;
 
 		.Top {
 			@apply space-y-7 lg:space-y-10 xl:space-y-[50px] text-center;
@@ -105,6 +107,10 @@ footer {
 				}
 			}
 		}
+	}
+
+	.BG {
+		@apply absolute object-cover object-left md:object-center w-full h-full top-0 left-0
 	}
 }
 </style>
