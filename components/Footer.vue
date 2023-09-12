@@ -35,6 +35,11 @@
 </template>
 
 <script>
+import {gsap} from 'gsap/dist/gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger)
+
 export default {
 	data() {
 		return {
@@ -57,13 +62,40 @@ export default {
 				},
 			]
 		}
+	},
+
+	methods: {
+		initFooterAnimation() {
+			const tl = gsap.timeline({
+				default: { ease: 'none' },
+				scrollTrigger: {
+					trigger: 'footer',
+					start: 'top bottom',
+					end: 'bottom bottom',
+					scrub: true
+				}
+			})
+
+			tl.fromTo('footer .Container', { yPercent: -50 }, {
+				yPercent: 0
+			})
+
+			tl.fromTo('.BG', { z: 150 }, {
+				z: 0
+			}, 0)
+		}
+	},
+
+	mounted() {
+		this.initFooterAnimation()
 	}
 }
 </script>
 
 <style lang="postcss" scoped>
 footer {
-	@apply bg-primary relative;
+	@apply bg-primary relative overflow-hidden;
+	perspective: 1000px;
 
 	.Container {
 		@apply pt-16 md:pt-20 lg:pt-24 xl:pt-[120px] pb-9 space-y-40 lg:space-y-48 xl:space-y-[198px] relative z-50;
