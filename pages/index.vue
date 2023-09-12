@@ -182,10 +182,10 @@
         </h4>
 
         <div class="Products">
-          <div v-for="(product, index) in products" :key="index" class="Product">
+          <a v-for="(product, index) in products" :key="index" href="/" class="Product">
             <img v-if="product.bg" :src="`/images/products/product-${index+1}-bg-image.webp`" alt="" class="BgImage">
             <img :src="`/images/products/product-${index+1}.webp`" alt="" class="ActualImage">
-          </div>
+          </a>
         </div>
 
         <a href="" class="ViewMore">
@@ -201,6 +201,10 @@ let Flickity;
 if (process.client) {
   Flickity = require('flickity');
 }
+import { gsap } from 'gsap/dist/gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
   name: 'IndexPage',
@@ -399,10 +403,33 @@ export default {
         // prevNextButtons: false,
         pageDots: false
       });
+    },
+
+    animateBranding() {
+      const products = document.querySelectorAll('.Branding .Product')
+
+      products.forEach((el, index) => {
+        el.addEventListener('mouseover', () => {
+          gsap.to(el.lastChild, {
+            scale: 1.15,
+            ease: "power3.inOut",
+            duration: 0.75
+          })
+        })
+
+        el.addEventListener('mouseleave', () => {
+          gsap.to(el.lastChild, {
+            scale: 1,
+            ease: "power3.inOut",
+            duration: 0.75
+          })
+        })
+      })
     }
   }, 
 
   mounted() {
+    this.animateBranding()
     // this.initFlkty()
   }
 }
