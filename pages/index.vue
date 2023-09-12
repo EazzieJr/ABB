@@ -425,11 +425,70 @@ export default {
           })
         })
       })
+    },
+
+    animateMarquees() {
+      const base = window.matchMedia("(max-width: 1023px)")
+      const lg = window.matchMedia("(min-width: 1024px) and (max-width: 1279px)")
+      const marqueeOne = document.querySelector('.MarqueeOne')
+      const marqueeTwo = document.querySelector('.MarqueeTwo')
+      const marqueeThree = document.querySelector('.MarqueeThree')
+
+      const m1 = gsap.timeline()
+      const m2 = gsap.timeline()
+      const m3 = gsap.timeline()
+
+      console.log(marqueeOne.clientWidth, marqueeOne.clientWidth/3)
+      m1.to(marqueeOne, {
+        x: -(marqueeOne.clientWidth/3 + (base.matches ? 10 : lg.matches ? 14 : 20)),
+        duration: 25,
+        repeat: -1,
+        ease: "none"
+      })
+
+      m2.fromTo(marqueeTwo,{x : -(marqueeTwo.clientWidth / 3 + (base.matches ? 10 : lg.matches ? 14 : 20)) }, {
+        x: 0,
+        duration: 30,
+        repeat: -1,
+        ease: "none"
+      })
+
+      m3.to(marqueeThree, {
+        x: -(marqueeThree.clientWidth/3 + (base.matches ? 10 : lg.matches ? 14 : 20)),
+        duration: 20,
+        repeat: -1,
+        ease: "none"
+      })
+
+      marqueeOne.addEventListener('mouseover', () => {
+        m1.pause()
+      })
+
+      marqueeOne.addEventListener('mouseleave', () => {
+        m1.play()
+      })
+
+      marqueeTwo.addEventListener('mouseover', () => {
+        m2.pause()
+      })
+
+      marqueeTwo.addEventListener('mouseleave', () => {
+        m2.play()
+      })
+
+      marqueeThree.addEventListener('mouseover', () => {
+        m3.pause()
+      })
+
+      marqueeThree.addEventListener('mouseleave', () => {
+        m3.play()
+      })
     }
   }, 
 
   mounted() {
     this.animateBranding()
+    this.animateMarquees()
     // this.initFlkty()
   }
 }
@@ -532,7 +591,7 @@ export default {
         @apply overflow-hidden space-y-5 lg:space-y-7 xl:space-y-10;
 
         > div {
-          @apply space-x-5 lg:space-x-7 xl:space-x-10;
+          @apply space-x-5 lg:space-x-7 xl:space-x-10 w-max;
 
           .MarqueeItem {
             @apply shrink-0 space-x-2 xl:space-x-2.5 rounded-full border border-white border-opacity-20 bg-white bg-opacity-[0.01] p-2 xl:pl-2.5 xl:py-[9px] pr-4 xl:pr-5;
