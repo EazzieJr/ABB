@@ -433,6 +433,7 @@ export default {
       const marqueeOne = document.querySelector('.MarqueeOne')
       const marqueeTwo = document.querySelector('.MarqueeTwo')
       const marqueeThree = document.querySelector('.MarqueeThree')
+      const marqueeItems = document.querySelectorAll('.MarqueeItem')
 
       const m1 = gsap.timeline()
       const m2 = gsap.timeline()
@@ -482,6 +483,24 @@ export default {
 
       marqueeThree.addEventListener('mouseleave', () => {
         m3.play()
+      })
+
+      marqueeItems.forEach((el, index) => {
+        el.addEventListener("mouseover", () => {
+          gsap.to(el, {
+            backgroundColor: "#B1FC03",
+            color: "#212121",
+            fontWeight: 500
+          })
+        })
+
+        el.addEventListener("mouseleave", () => {
+          gsap.to(el, {
+            backgroundColor: "rgba(255, 255, 255, 0.01)",
+            color: "white",
+            fontWeight: 400
+          })
+        })
       })
     }
   }, 
@@ -594,7 +613,7 @@ export default {
           @apply space-x-5 lg:space-x-7 xl:space-x-10 w-max;
 
           .MarqueeItem {
-            @apply shrink-0 space-x-2 xl:space-x-2.5 rounded-full border border-white border-opacity-20 bg-white bg-opacity-[0.01] p-2 xl:pl-2.5 xl:py-[9px] pr-4 xl:pr-5;
+            @apply shrink-0 space-x-2 xl:space-x-2.5 rounded-full border border-white border-opacity-20 bg-white text-white bg-opacity-[0.01] p-2 xl:pl-2.5 xl:py-[9px] pr-4 xl:pr-5;
 
             .Icon {
               img {
@@ -603,7 +622,7 @@ export default {
             }
 
             span {
-              @apply font-inter text-sm lg:text-base xl:text-xl text-white text-opacity-[0.65]
+              @apply font-inter text-sm lg:text-base xl:text-xl text-opacity-[0.65]
             }
           }
         }
