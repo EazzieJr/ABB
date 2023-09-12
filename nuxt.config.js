@@ -16,6 +16,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'stylesheet', href: 'https://unpkg.com/flickity@2/dist/flickity.min.css' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -23,7 +24,9 @@ export default {
 
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    // { src: '@/plugins/vue-flickity.js', mode: 'client' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -47,6 +50,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ["gsap"],
+    
     postcss: {
       postcssOptions: {
         plugins: {

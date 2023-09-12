@@ -15,10 +15,13 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@studio-freight/lenis": "^1.0.16",
     "core-js": "^3.25.3",
+    "flickity": "^3.0.0",
     "gsap": "^3.12.2",
     "nuxt": "^2.15.8",
     "nuxt-route-meta": "^2.3.6",
+    "swiper": "^10.2.0",
     "vue": "^2.7.10",
+    "vue-easy-slider": "^5.3.4",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   },

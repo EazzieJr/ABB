@@ -132,6 +132,48 @@
         </div>
       </div>
     </section>
+
+    <section class="Illustrations">
+      <div class="Container constraint">
+        <h4>
+          Illustrations
+        </h4>
+        
+        <div class="SwiperContainer">
+          <div class="SwiperProducts start">
+            <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
+              <img :src="`/images/${el.src}.png`" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div class="Controllers between">
+          <div class="Dots start">
+            <div class="Dot active"></div>
+            <div class="Dot"></div>
+            <div class="Dot"></div>
+            <div class="Dot"></div>
+            <div class="Dot"></div>
+          </div>
+
+          <div class="Arrows start">
+            <button class="Left center">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 7.58301H1" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 1.58301L1 7.58301L7 13.583" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <button class="Right center active">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 7.58301H13" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 1.58301L13 7.58301L7 13.583" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
     
     <section class="Branding">
       <div class="Container constraint">
@@ -155,6 +197,10 @@
 </template>
 
 <script>
+let Flickity;
+if (process.client) {
+  Flickity = require('flickity');
+}
 
 export default {
   name: 'IndexPage',
@@ -294,16 +340,70 @@ export default {
           name: "svg",
           link: "/"
         },
+      ],
+
+      list: [
+        { backgroundColor: '#3f51b5', width: '100%', height: '100%' },
+        { backgroundColor: '#eee', width: '100%', height: '100%' },
+        { backgroundColor: '#f44336', width: '100%', height: '100%' },
+      ],
+
+      flickityOptions: {
+        initialIndex: 3,
+        prevNextButtons: false,
+        pageDots: false,
+        wrapAround: true
+
+        // any options from Flickity can be used
+      },
+
+      carousel: [
+        {
+          src: "test",
+          link: "/"
+        },
+        {
+          src: "test",
+          link: "/"
+        },
+        {
+          src: "test",
+          link: "/"
+        },
+        {
+          src: "test",
+          link: "/"
+        },
+        {
+          src: "test",
+          link: "/"
+        },
+        {
+          src: "test",
+          link: "/"
+        },
       ]
     }
   },
 
   methods: {
-
+    initFlkty() {
+      const elem = document.querySelector('.SwiperProducts');
+      const flkty = new Flickity(elem, {
+        // options
+        cellAlign: 'left',
+        // autoPlay: 3000,
+        wrapAround: true,
+        freeScroll: true,
+        contain: true,
+        // prevNextButtons: false,
+        pageDots: false
+      });
+    }
   }, 
 
   mounted() {
-
+    // this.initFlkty()
   }
 }
 </script>
@@ -458,6 +558,61 @@ export default {
       }
     }
   }
+
+  .Illustrations {
+    .Container {
+      @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
+
+      .SwiperContainer {
+        @apply overflow-hidden -mr-5 xl:-mr-[100px];
+        .SwiperProducts {
+          @apply space-x-5 lg:space-x-7 xl:space-x-[30px];
+
+          .Carousel-cell {
+            @apply shrink-0;
+
+            img {
+              @apply w-80 lg:w-[440px] xl:w-[600px]
+            }
+          }
+        }
+      }
+
+      .Controllers {
+        .Dots {
+          @apply space-x-3 md:space-x-5;
+
+          .Dot {
+            @apply w-3.5 h-3.5 xl:w-[15px] xl:h-[15px] rounded-full bg-[#DDDCDB];
+
+            &.active {
+              @apply bg-primary
+            }
+          }
+        }
+
+        .Arrows {
+          @apply space-x-3.5 xl:space-x-[15px];
+
+          button {
+            @apply w-10 h-10 xl:w-[50px] xl:h-[50px] bg-[#DDDCDB] rounded-full;
+
+            &.active {
+              @apply bg-primary;
+
+              svg path {
+                @apply stroke-white
+              }
+            }
+
+            svg {
+              @apply w-2.5 xl:w-3;
+            }
+          }
+        }
+      }
+    }
+  }
   
   .Branding {
     @apply mt-16 md:mt-20 lg:mt-24 xl:mt-[120px] mb-14 lg:mb-20 xl:mb-[100px]; 
@@ -500,5 +655,11 @@ export default {
       }
     }
   }
+}
+
+
+
+.Slider {
+  /* @apply opacity-40 */
 }
 </style>
