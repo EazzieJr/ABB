@@ -1,4 +1,3 @@
-.SwiperProducts {
-	display: none;
-	
+.Carousel-cell {
+	position: absolute !important;
 }

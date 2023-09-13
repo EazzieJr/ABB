@@ -153,7 +153,7 @@
         </div>
         
         <div class="SwiperContainer">
-          <div class="SwiperProducts start">
+          <div class="SwiperProducts">
             <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
               <img :src="`/images/${el.src}.png`" alt="">
             </div>
@@ -162,22 +162,24 @@
 
         <div class="Controllers between">
           <div class="Dots start">
-            <div class="Dot active"></div>
-            <div class="Dot"></div>
-            <div class="Dot"></div>
-            <div class="Dot"></div>
-            <div class="Dot"></div>
+             <button
+              v-for="(el, index) in carousel"
+              :key="index"
+              :class="{ 'active': flkty &&  index === flkty.selectedIndex }"
+              class="Dot"
+              @click="goToSlide(index)"
+            ></button>
           </div>
 
           <div class="Arrows start">
-            <button class="Left center">
+            <button class="Left center" @click=previousSlide>
               <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13 7.58301H1" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M7 1.58301L1 7.58301L7 13.583" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
 
-            <button class="Right center active">
+            <button class="Right center active" @click="nextSlide">
               <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 7.58301H13" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M7 1.58301L13 7.58301L7 13.583" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -212,6 +214,12 @@
         </a>
       </div>
     </section>
+
+    <!-- <div class="main-carousel">
+      <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
+        <img :src="`/images/${el.src}.png`" alt="">
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -231,6 +239,8 @@ export default {
 
   data() {
     return {
+      flkty: null,
+      
       products: [
         {
           name: "Black Tote Bag",
@@ -413,15 +423,19 @@ export default {
   methods: {
     initFlkty() {
       const elem = document.querySelector('.SwiperProducts');
-      const flkty = new Flickity(elem, {
+      this.flkty = new Flickity(elem, {
         // options
         cellAlign: 'left',
-        // autoPlay: 3000,
-        wrapAround: true,
+        autoPlay: 5000,
         freeScroll: true,
         contain: true,
-        // prevNextButtons: false,
-        pageDots: false
+        prevNextButtons: false,
+        pageDots: false,
+        draggable: true,
+        pauseAutoPlayOnHover: true,
+        selectedAttraction: 0.01,
+        friction: 0.15,
+        hash: false
       });
     },
 
@@ -571,14 +585,45 @@ export default {
           })
         })
       })
-    }
+    },
+
+    goToSlide(index) {
+      // Programmatically move to a specific slide
+      this.flkty.select(index);
+    },
+
+    previousSlide() {
+      // Go to the previous slide
+      if (this.flkty) {
+        this.flkty.previous();
+      }
+    },
+
+    nextSlide() {
+      // Go to the next slide
+      if (this.flkty) {
+        this.flkty.next();
+      }
+    },
   }, 
 
   mounted() {
     this.initStylesInteractions()
     this.initIllustrationInteractions()
     this.animateBranding()
-    // this.initFlkty()
+    this.initFlkty()
+
+    
+
+    // if (Flickity && process.client) {
+    //   var elem = document.querySelector('.main-carousel');
+    //   this.flkty = new Flickity(elem, {
+    //     // options
+    //     cellAlign: 'left',
+    //     contain: true,
+    //     freeScroll: true
+    //   });
+    // }
   }
 }
 </script>
@@ -743,19 +788,26 @@ export default {
   }
 
   .Illustrations {
+    @apply overflow-hidden;
+
     .Container {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
 
       .SwiperContainer {
         @apply overflow-hidden -mr-5 xl:-mr-[100px];
         .SwiperProducts {
-          @apply space-x-5 lg:space-x-7 xl:space-x-[30px];
+          /* @apply space-x-5 lg:space-x-7 xl:space-x-[30px]; */
 
           .Carousel-cell {
-            @apply shrink-0;
+            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px];
 
             img {
-              @apply w-80 lg:w-[440px] xl:w-[600px]
+              @apply w-80 lg:w-[440px] xl:w-[600px] duration-500;
+              filter: saturate(0);
+
+              &:hover {
+                filter: saturate(1);
+              }
             }
           }
         }
@@ -789,7 +841,13 @@ export default {
             }
 
             svg {
-              @apply w-2.5 xl:w-3;
+              @apply w-2.5 xl:w-3 duration-500;
+            }
+
+            &:hover {
+              svg {
+                @apply scale-150
+              }
             }
           }
         }
@@ -851,6 +909,32 @@ export default {
     @apply absolute top-0 left-0
   }
 }
+
+.main-carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 66%;
+  height: 200px;
+  margin-right: 10px;
+  background: #8C8;
+  border-radius: 5px;
+  counter-increment: gallery-cell;
+  display: inline
+}
+
+/* cell number */
+.carousel-cell:before {
+  display: block;
+  text-align: center;
+  content: counter(gallery-cell);
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+}
+
+
 
 .Slider {
   /* @apply opacity-40 */
