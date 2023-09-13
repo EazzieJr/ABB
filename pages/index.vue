@@ -135,9 +135,15 @@
 
     <section class="Illustrations">
       <div class="Container constraint">
-        <h4>
-          Illustrations
-        </h4>
+        <div class="TextAnim">
+          <h4>
+            Illustrations
+          </h4>
+
+          <span>
+            Illustrations
+          </span>
+        </div>
         
         <div class="SwiperContainer">
           <div class="SwiperProducts start">
@@ -177,9 +183,15 @@
     
     <section class="Branding">
       <div class="Container constraint">
-        <h4>
-          Branding
-        </h4>
+        <div class="TextAnim">
+          <h4>
+            Branding
+          </h4>
+
+          <span>
+            Branding
+          </span>
+        </div>
 
         <div class="Products">
           <a v-for="(product, index) in products" :key="index" href="/" class="Product">
@@ -203,8 +215,9 @@ if (process.client) {
 }
 import { gsap } from 'gsap/dist/gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { TextPlugin } from 'gsap/dist/TextPlugin'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
 export default {
   name: 'IndexPage',
@@ -405,8 +418,13 @@ export default {
       });
     },
 
+    initIllustrationInteractions() {
+      this.textAnim('.Illustrations', '.Illustrations .TextAnim span')
+    },
+
     animateBranding() {
       const products = document.querySelectorAll('.Branding .Product')
+      this.textAnim('.Branding', '.Branding .TextAnim span')
 
       products.forEach((el, index) => {
         el.addEventListener('mouseover', () => {
@@ -424,6 +442,27 @@ export default {
             duration: 0.75
           })
         })
+      })
+    },
+
+    textAnim(trigger, el) {
+      let bigText = document.querySelector(el)
+      let word = bigText.innerText
+      bigText.innerText = ""
+
+      gsap.to(bigText, {
+        scrollTrigger: {
+          trigger: trigger,
+          start: 'top 80%'
+        },
+
+        text: {
+          delimiter: "",
+          value: word
+        },
+
+        duration: 1,
+        ease: "power2.out"
       })
     },
 
@@ -506,6 +545,7 @@ export default {
   }, 
 
   mounted() {
+    this.initIllustrationInteractions()
     this.animateBranding()
     this.animateMarquees()
     // this.initFlkty()
@@ -762,7 +802,17 @@ export default {
   }
 }
 
+.TextAnim {
+  @apply relative;
 
+  h2, h3, h4 {
+    @apply opacity-0;
+  }
+
+  > span {
+    @apply absolute top-0 left-0
+  }
+}
 
 .Slider {
   /* @apply opacity-40 */
