@@ -215,6 +215,8 @@
       </div>
     </section>
 
+    <div class="Cursor w-10 h-10 rounded-full border-black z-[1000]"></div>
+
     <!-- <div class="main-carousel">
       <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
         <img :src="`/images/${el.src}.png`" alt="">
@@ -228,10 +230,12 @@ let Flickity;
 if (process.client) {
   Flickity = require('flickity');
 }
+import MouseFollower from "mouse-follower";
 import { gsap } from 'gsap/dist/gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { TextPlugin } from 'gsap/dist/TextPlugin'
 
+MouseFollower.registerGSAP(gsap);
 gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
 export default {
@@ -421,6 +425,13 @@ export default {
   },
 
   methods: {
+    initCursor() {
+      const cursor = new MouseFollower({
+        // el: ".Cursor",
+        skewing: 3,
+      });
+    },
+    
     initFlkty() {
       const elem = document.querySelector('.SwiperProducts');
       this.flkty = new Flickity(elem, {
@@ -610,22 +621,11 @@ export default {
   }, 
 
   mounted() {
+    this.initCursor()
     this.initStylesInteractions()
     this.initIllustrationInteractions()
     this.animateBranding()
     this.initFlkty()
-
-    
-
-    // if (Flickity && process.client) {
-    //   var elem = document.querySelector('.main-carousel');
-    //   this.flkty = new Flickity(elem, {
-    //     // options
-    //     cellAlign: 'left',
-    //     contain: true,
-    //     freeScroll: true
-    //   });
-    // }
   }
 }
 </script>
