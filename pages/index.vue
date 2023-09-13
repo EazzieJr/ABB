@@ -41,10 +41,17 @@
     <section class="Styles">
       <div class="Container">
         <div class="Top constraint">
-          <h2>
-            Two Dynamic Styles <br class="hidden md:block">
-            Where Linear Meets Bold
-          </h2>
+          <div class="TextAnim">
+            <h2>
+              Two Dynamic Styles
+              Where Linear Meets Bold
+            </h2>
+
+            <span>
+              Two Dynamic Styles
+              Where Linear Meets Bold
+            </span>
+          </div>
 
           <div class="StyleTypes">
             <div v-for="(style, index) in styleTypes" :key="index" class="Type">
@@ -418,6 +425,29 @@ export default {
       });
     },
 
+    initStylesInteractions() {
+      const styles = document.querySelectorAll('.Type')
+      
+      this.animateMarquees()
+      this.textAnim('.Styles', '.Styles .TextAnim span', 2)
+
+      styles.forEach(el => {
+        gsap.set(el, { yPercent: 50 })
+      })
+
+      gsap.to(styles, {
+        scrollTrigger: {
+          trigger: '.StyleTypes',
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub: true
+        },
+
+        yPercent: 0,
+        stagger: 0.2
+      })
+    },
+
     initIllustrationInteractions() {
       this.textAnim('.Illustrations', '.Illustrations .TextAnim span')
     },
@@ -445,7 +475,7 @@ export default {
       })
     },
 
-    textAnim(trigger, el) {
+    textAnim(trigger, el, duration) {
       let bigText = document.querySelector(el)
       let word = bigText.innerText
       bigText.innerText = ""
@@ -461,7 +491,7 @@ export default {
           value: word
         },
 
-        duration: 1,
+        duration: duration ? duration : 1,
         ease: "power2.out"
       })
     },
@@ -545,9 +575,9 @@ export default {
   }, 
 
   mounted() {
+    this.initStylesInteractions()
     this.initIllustrationInteractions()
     this.animateBranding()
-    this.animateMarquees()
     // this.initFlkty()
   }
 }
@@ -617,8 +647,16 @@ export default {
       .Top {
         @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-20;
 
-        h2 {
-          @apply text-white
+        .TextAnim {
+          @apply lg:w-[70%] md:w-[75%] xl:w-[75%] 2xl:w-[70%];
+          
+          h2 {
+            @apply text-white
+          }
+
+          span {
+            @apply text-white
+          }
         }
 
         .StyleTypes {
