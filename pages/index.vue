@@ -155,7 +155,7 @@
         <div class="SwiperContainer">
           <div class="SwiperProducts">
             <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
-              <img :src="`/images/${el.src}.png`" alt="">
+              <img :src="`/images/illustrations/${el.src}.webp`" alt="">
             </div>
           </div>
         </div>
@@ -172,14 +172,14 @@
           </div>
 
           <div class="Arrows start">
-            <button class="Left center" @click=previousSlide>
+            <button class="Left center" :class="{'active': flkty && flkty.selectedIndex >= 1}" @click=previousSlide>
               <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13 7.58301H1" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M7 1.58301L1 7.58301L7 13.583" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
 
-            <button class="Right center active" @click="nextSlide">
+            <button class="Right center" :class="{ 'active': flkty && flkty.selectedIndex <= 4 }" @click="nextSlide">
               <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 7.58301H13" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M7 1.58301L13 7.58301L7 13.583" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -393,27 +393,27 @@ export default {
 
       carousel: [
         {
-          src: "test",
+          src: "burger",
           link: "/"
         },
         {
-          src: "test",
+          src: "sandwich",
           link: "/"
         },
         {
-          src: "test",
+          src: "popcorn",
           link: "/"
         },
         {
-          src: "test",
+          src: "cupcake",
           link: "/"
         },
         {
-          src: "test",
+          src: "hotdog",
           link: "/"
         },
         {
-          src: "test",
+          src: "fries",
           link: "/"
         },
       ]
@@ -437,6 +437,8 @@ export default {
         friction: 0.15,
         hash: false
       });
+
+      console.log(this.flkty)
     },
 
     initStylesInteractions() {
@@ -877,7 +879,7 @@ export default {
 
           &:nth-child(1) {
             .ActualImage {
-              @apply w-60 md:w-72 lg:w-[360px] xl:w-[474px] 2xl:w-[502px] left-[20%] md:left-[15%] lg:left-[90px] xl:left-[114px] 2xl:left-32 top-6 md:top-3 lg:top-6
+              @apply w-60 md:w-72 lg:w-[360px] xl:w-[474px] 2xl:w-[502px] left-[20%] md:left-[15%] lg:left-[90px] xl:left-[114px] 2xl:left-32 top-6 md:top-3 lg:top-6 2xl:top-10
             }
           }
 
@@ -908,35 +910,5 @@ export default {
   > span {
     @apply absolute top-0 left-0
   }
-}
-
-.main-carousel {
-  background: #EEE;
-}
-
-.carousel-cell {
-  width: 66%;
-  height: 200px;
-  margin-right: 10px;
-  background: #8C8;
-  border-radius: 5px;
-  counter-increment: gallery-cell;
-  display: inline
-}
-
-/* cell number */
-.carousel-cell:before {
-  display: block;
-  text-align: center;
-  content: counter(gallery-cell);
-  line-height: 200px;
-  font-size: 80px;
-  color: white;
-}
-
-
-
-.Slider {
-  /* @apply opacity-40 */
 }
 </style>
