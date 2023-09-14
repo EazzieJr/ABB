@@ -204,7 +204,6 @@
 
         <div class="Products">
           <a v-for="(product, index) in products" :key="index" href="/" class="Product">
-            <img v-if="product.bg" :src="`/images/products/product-${index+1}-bg-image.webp`" alt="" class="BgImage">
             <img :src="`/images/products/product-${index+1}.webp`" alt="" class="ActualImage">
           </a>
         </div>
@@ -248,19 +247,15 @@ export default {
       products: [
         {
           name: "Black Tote Bag",
-          bg: true
         },
         {
           name: "Yellow Tote Bag",
-          bg: false
         },
         {
           name: "Cups",
-          bg: true
         },
         {
           name: "Checkered Bag",
-          bg: true
         },
       ],
 
@@ -725,7 +720,7 @@ export default {
   }
   
   .Styles {
-    @apply bg-primary py-14 lg:py-20 xl:py-[100px] overflow-hidden;
+    @apply bg-primary py-14 lg:py-[6.94vw] overflow-hidden;
 
     .Container {
       @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px];
