@@ -31,7 +31,7 @@ export default {
 
 <style lang="postcss" scoped>
 nav {
-	@apply bg-primary py-[21px];
+	@apply bg-primary py-[21px] sticky top-0 z-[1000];
 	
 	.NavContainer {
 		.Buttons {
