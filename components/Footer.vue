@@ -246,10 +246,36 @@ export default {
 			tl.fromTo('.BG', { z: 150 }, {
 				z: 0
 			}, 0)
+		},
+
+		animate() {
+			const icons = document.querySelectorAll(".SvgBg svg > g > g")
+
+			const getRandomValue = (min, max) => {
+				return Math.random() * (max - min) + min;
+			}
+
+			icons.forEach(el => {
+				const randomY = getRandomValue(-400, 400);
+
+				// console.log(randomY)
+
+				el.style.transform = `translateY( ${randomY}px)`;
+			})
+
+			gsap.to(icons, {
+				scrollTrigger: {
+					trigger: 'footer',
+					start: 'top bottom',
+					end: 'bottom bottom',
+					scrub: true
+				}, y: 0, ease: "none"
+			})
 		}
 	},
 
 	mounted() {
+		this.animate()
 		// this.initFooterAnimation()
 	}
 }
