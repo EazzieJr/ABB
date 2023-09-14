@@ -654,7 +654,7 @@ export default {
   }, 
 
   mounted() {
-    this.initCursor()
+    // this.initCursor()
     this.initStylesInteractions()
     this.initIllustrationInteractions()
     this.animateBranding()

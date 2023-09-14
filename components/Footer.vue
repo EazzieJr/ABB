@@ -87,7 +87,7 @@ export default {
 	},
 
 	mounted() {
-		this.initFooterAnimation()
+		// this.initFooterAnimation()
 	}
 }
 </script>
