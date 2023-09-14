@@ -482,27 +482,6 @@ export default {
             this.flkty.previous();
           }
         }
-
-        // if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-        //   // Horizontal movement
-        //   if (event.deltaX > 0) {
-        //   this.flkty.next();
-        //     console.log(event)
-        //     // console.log('Horizontal scroll right');
-        //   } else if (event.deltaX < 0) {
-        //       this.flkty.previous();
-        //     // console.log('Horizontal scroll left');
-        //   }
-        // }
-        // console.log('kkk')
-        // Determine the scroll direction
-        // if (event.deltaY < 0) {
-        //   // Scroll up: Go to the previous slide
-        //   this.flkty.previous();
-        // } else if (event.deltaY > 0) {
-        //   // Scroll down: Go to the next slide
-        //   this.flkty.next();
-        // }
       });
     },
 
