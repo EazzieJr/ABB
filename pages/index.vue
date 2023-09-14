@@ -790,7 +790,7 @@ export default {
   }
   
   .About {
-    @apply my-16 md:my-20 lg:my-24 xl:my-[120px] overflow-hidden;
+    @apply my-16 md:my-20 lg:my-24 xl:my-[8.33vw] overflow-hidden;
     
     .Container {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
@@ -896,7 +896,7 @@ export default {
   }
   
   .Branding {
-    @apply mt-16 md:mt-20 lg:mt-24 xl:mt-[120px] mb-14 lg:mb-20 xl:mb-[100px] overflow-hidden; 
+    @apply mt-16 md:mt-20 lg:mt-24 xl:my-[8.33vw] mb-14 lg:mb-20 xl:mb-[100px] overflow-hidden; 
 
     .Container {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
@@ -905,14 +905,10 @@ export default {
         @apply grid grid-cols-1 md:grid-cols-2 gap-5;
 
         .Product {
-          @apply rounded-[16px] lg:rounded-[30px] w-full max-w-[335px] md:max-w-none h-[355px] md:h-[376px] lg:h-[512px] xl:h-[47.22vw] overflow-hidden relative place-self-center md:place-self-auto;
-
-          .BgImage {
-            @apply absolute object-cover object-center w-full h-full
-          }
+          @apply rounded-[16px] lg:rounded-[1.23vw] w-full max-w-[335px] md:max-w-none h-[355px] md:h-[376px] lg:h-[512px] xl:h-[47.22vw] overflow-hidden relative place-self-center md:place-self-auto;
 
           .ActualImage {
-            @apply z-50 relative
+            @apply z-50 relative w-full h-full
           }
         }
       }
