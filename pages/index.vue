@@ -1,5 +1,5 @@
 <template>
-  <div class="IndexPage">
+  <div class="IndexPage" data-cursor-sprite="">
     <section class="Hero">
       <div class="Container constraint lg:between">
         <div class="TopLeft md:col-center lg:block">
@@ -74,7 +74,8 @@
           <div class="MarqueeOne start">
             <div v-for="(marquee, index) in marqueeOne" :key="index" class="MarqueeItem start">
               <div class="Icon">
-                <img :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
+                <img class="Bold" :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}-bold.svg`" alt="">
+                <img class="Linear" :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
               </div>
 
               <span>
@@ -86,7 +87,8 @@
           <div class="MarqueeTwo start">
             <div v-for="(marquee, index) in marqueeTwo" :key="index" class="MarqueeItem start">
               <div class="Icon">
-                <img :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
+                <img class="Bold" :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}-bold.svg`" alt="">
+                <img class="Linear" :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
               </div>
 
               <span>
@@ -98,7 +100,8 @@
           <div class="MarqueeThree start">
             <div v-for="(marquee, index) in marqueeThree" :key="index" class="MarqueeItem start">
               <div class="Icon">
-                <img :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
+                <img class="Bold" :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}-bold.svg`" alt="">
+                  <img class="Linear" :src="`/svg/marquee/${marquee.toLowerCase().split(' ').join('-')}.svg`" alt="">
               </div>
 
               <span>
@@ -214,7 +217,7 @@
       </div>
     </section>
 
-    <div class="Cursor w-10 h-10 rounded-full border-black z-[1000]"></div>
+    <div class="mf-cursor z-[1000] -left-5 -top-5 translate-x-1/2 translate-y-1/2"></div>
 
     <!-- <div class="main-carousel">
       <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
@@ -422,8 +425,13 @@ export default {
   methods: {
     initCursor() {
       const cursor = new MouseFollower({
-        // el: ".Cursor",
+        el: ".mf-cursor",
         skewing: 3,
+        stateDetection: {
+          '-pointer': 'a,button',
+          '-exclusion': 'h1, h2, h3, h4, h5, h6, .TextAnim span',
+          // '-hidden': '.my-input'
+        }
       });
     },
     
@@ -614,7 +622,7 @@ export default {
           gsap.to(el, {
             backgroundColor: "#B1FC03",
             color: "#212121",
-            fontWeight: 500
+            fontWeight: 500,
           })
         })
 
@@ -649,7 +657,7 @@ export default {
   }, 
 
   mounted() {
-    // this.initCursor()
+    this.initCursor()
     this.initStylesInteractions()
     this.initIllustrationInteractions()
     this.animateBranding()
@@ -778,10 +786,26 @@ export default {
               img {
                 @apply w-7 lg:w-8 xl:w-[38px]
               }
+
+              .Bold {
+                @apply hidden
+              }
             }
 
             span {
               @apply font-inter text-sm lg:text-base xl:text-xl text-opacity-[0.65]
+            }
+
+            &:hover {
+              .Icon {
+                .Bold {
+                  @apply block;
+                }
+
+                .Linear {
+                  @apply hidden
+                }
+              }
             }
           }
         }

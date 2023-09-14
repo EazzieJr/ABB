@@ -17,11 +17,11 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     link: [{ rel: 'stylesheet', href: 'https://unpkg.com/flickity@2/dist/flickity.min.css' }],
-    link: [{ rel: 'stylesheet', href: 'https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.css' }],
+    // link: [{ rel: 'stylesheet', href: 'https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.css' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/tailwind/tailwind.css', '@/assets/main.css'],
+  css: ['@/assets/tailwind/tailwind.css', '@/assets/main.css', '@/assets/cursor.css'],
 
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
