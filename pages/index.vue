@@ -437,7 +437,7 @@ export default {
       this.flkty = new Flickity(elem, {
         // options
         cellAlign: 'left',
-        autoPlay: 5000,
+        // autoPlay: 5000,
         freeScroll: true,
         contain: true,
         prevNextButtons: false,
@@ -446,10 +446,64 @@ export default {
         pauseAutoPlayOnHover: true,
         selectedAttraction: 0.01,
         friction: 0.15,
-        hash: false
+        hash: false,
+        accessibility: true
       });
 
-      console.log(this.flkty)
+      let isScrollingHorizontally = false; // Initialize to false
+
+      elem.addEventListener('wheel', (event) => {
+        // Prevent the default behavior of the wheel event, which is scrolling the page
+        event.preventDefault();
+
+          // Calculate the absolute values of deltaX and deltaY
+        const deltaX = Math.abs(event.deltaX);
+        const deltaY = Math.abs(event.deltaY);
+
+        // Set a threshold value (adjust as needed)
+        const threshold = 50;
+
+        // Check if the movement is primarily horizontal
+        if (deltaX > deltaY && deltaX > threshold) {
+          isScrollingHorizontally = true;
+        } else {
+          isScrollingHorizontally = false;
+        }
+
+        // Determine the scroll direction and perform actions based on whether it's horizontal or vertical
+        if (isScrollingHorizontally) {
+          // Horizontal scroll: Handle it as needed
+          // For example, navigate between slides horizontally
+          if (event.deltaX < 0) {
+            // Scroll to the next slide
+            this.flkty.next();
+          } else {
+            // Scroll to the previous slide
+            this.flkty.previous();
+          }
+        }
+
+        // if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+        //   // Horizontal movement
+        //   if (event.deltaX > 0) {
+        //   this.flkty.next();
+        //     console.log(event)
+        //     // console.log('Horizontal scroll right');
+        //   } else if (event.deltaX < 0) {
+        //       this.flkty.previous();
+        //     // console.log('Horizontal scroll left');
+        //   }
+        // }
+        // console.log('kkk')
+        // Determine the scroll direction
+        // if (event.deltaY < 0) {
+        //   // Scroll up: Go to the previous slide
+        //   this.flkty.previous();
+        // } else if (event.deltaY > 0) {
+        //   // Scroll down: Go to the next slide
+        //   this.flkty.next();
+        // }
+      });
     },
 
     initStylesInteractions() {
@@ -633,15 +687,19 @@ export default {
 <style lang="postcss" scoped>
 .IndexPage {
   .Hero {
-    @apply lg:h-[100svh] bg-[#F7F7F7] pt-10 md:pt-14 lg:pt-16 xl:pt-20 pb-10 md:pb-14 lg:pb-20 xl:pb-[100px];
+    @apply lg:h-[calc(100svh_-_90px)] bg-[#F7F7F7] pt-10 xl:pt-20 pb-10 md:pb-14 lg:pb-20 xl:pb-[100px] overflow-hidden;
 
     .Container {
-      @apply space-y-8 lg:space-y-0 lg:space-x-10;
+      @apply space-y-8 lg:space-y-0;
       .TopLeft {
-        @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px] lg:w-[55%] xl:w-[698px] 2xl:w-[770px] shrink-0;
+        @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px] md:w-[48.4vw] shrink-0;
 
         .Texts {
-          @apply space-y-3 xl:space-y-5 md:text-center lg:text-left md:w-3/4 lg:w-auto
+          @apply space-y-3 xl:space-y-5 md:text-center lg:text-left md:w-3/4 lg:w-auto;
+
+          p {
+            @apply xl:text-[1.66vw];
+          }
         }
 
         .Buttons {
@@ -667,18 +725,20 @@ export default {
             @apply block;
 
             img {
-              @apply w-11 xl:w-[55px]
+              @apply w-11 md:w-[3.81vw]
             }
           }
         }
       }
 
       .BottomRight {
+        @apply grow shrink-0;
+
         .Image {
-          @apply lg:-mr-5 xl:-mr-[100px];
+          @apply relative md:-right-[6.24vw] md:w-full;
 
           img {
-            @apply md:w-[400px] lg:w-auto mx-auto lg:mx-0
+            @apply md:w-[40vw] mx-auto lg:mx-0
           }
         }
       }
@@ -686,7 +746,7 @@ export default {
   }
   
   .Styles {
-    @apply bg-primary py-14 lg:py-20 xl:py-[100px];
+    @apply bg-primary py-14 lg:py-20 xl:py-[100px] overflow-hidden;
 
     .Container {
       @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px];
@@ -756,7 +816,7 @@ export default {
   }
   
   .About {
-    @apply my-16 md:my-20 lg:my-24 xl:my-[120px];
+    @apply my-16 md:my-20 lg:my-24 xl:my-[120px] overflow-hidden;
     
     .Container {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
@@ -782,7 +842,7 @@ export default {
 
         .BottomRight {
           .Image {
-            @apply -mr-5 xl:-mr-[100px]
+            @apply -mr-5 xl:-mr-[100px] xl:w-[45.48vw]
           }
         }
       }
@@ -796,7 +856,7 @@ export default {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
 
       .SwiperContainer {
-        @apply overflow-hidden -mr-5 xl:-mr-[100px];
+        @apply -mx-5 xl:-mx-[4.86vw] pl-5 xl:pl-[4.86vw];
         .SwiperProducts {
           /* @apply space-x-5 lg:space-x-7 xl:space-x-[30px]; */
 
@@ -804,13 +864,17 @@ export default {
             @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px];
 
             img {
-              @apply w-80 lg:w-[440px] xl:w-[600px] duration-500;
+              @apply w-80 lg:w-[440px] xl:w-[41.66vw] 2xl:w-[38vw] duration-500;
               filter: saturate(0);
 
               &:hover {
                 filter: saturate(1);
               }
             }
+
+            /* &:nth-child(1) {
+              @apply ml-5 xl:ml-[4.86vw]
+            } */
           }
         }
       }
@@ -858,7 +922,7 @@ export default {
   }
   
   .Branding {
-    @apply mt-16 md:mt-20 lg:mt-24 xl:mt-[120px] mb-14 lg:mb-20 xl:mb-[100px]; 
+    @apply mt-16 md:mt-20 lg:mt-24 xl:mt-[120px] mb-14 lg:mb-20 xl:mb-[100px] overflow-hidden; 
 
     .Container {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
@@ -867,7 +931,7 @@ export default {
         @apply grid grid-cols-1 md:grid-cols-2 gap-5;
 
         .Product {
-          @apply rounded-[16px] lg:rounded-[30px] w-full max-w-[335px] md:max-w-none h-[355px] md:h-[376px] lg:h-[512px] xl:h-[648px] 2xl:h-[720px] overflow-hidden relative place-self-center md:place-self-auto;
+          @apply rounded-[16px] lg:rounded-[30px] w-full max-w-[335px] md:max-w-none h-[355px] md:h-[376px] lg:h-[512px] xl:h-[47.22vw] overflow-hidden relative place-self-center md:place-self-auto;
 
           .BgImage {
             @apply absolute object-cover object-center w-full h-full
@@ -875,20 +939,6 @@ export default {
 
           .ActualImage {
             @apply z-50 relative
-          }
-
-          &:nth-child(1) {
-            .ActualImage {
-              @apply w-60 md:w-72 lg:w-[360px] xl:w-[474px] 2xl:w-[502px] left-[20%] md:left-[15%] lg:left-[90px] xl:left-[114px] 2xl:left-32 top-6 md:top-3 lg:top-6 2xl:top-10
-            }
-          }
-
-          &:nth-child(4) {
-            @apply flex justify-center items-center;
-            
-            .ActualImage {
-              @apply w-[230px] md:w-[242px] lg:w-[330px] xl:w-[417px] 2xl:w-[464px];
-            }
           }
         }
       }
