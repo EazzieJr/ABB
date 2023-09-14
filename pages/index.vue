@@ -1,8 +1,8 @@
 <template>
   <div class="IndexPage" data-cursor-sprite="">
     <section class="Hero">
-      <div class="Container constraint lg:between">
-        <div class="TopLeft md:col-center lg:block">
+      <div class="Container constraint md:between">
+        <div class="TopLeft block">
           <div class="Texts">
             <h1>
               Explore my curated collections to find the perfect pairings
@@ -32,7 +32,7 @@
 
         <div class="BottomRight">
           <div class="Image">
-            <img src="/images/hero-temp.png" alt="">
+            <img src="/images/hero-image.webp" alt="">
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@
 
           <div class="BottomRight">
             <div class="Image">
-              <img src="/images/abb-temp.webp" alt="">
+              <img src="/images/carol.webp" alt="">
             </div>
           </div>
         </div>
@@ -679,12 +679,12 @@ export default {
     @apply lg:h-[calc(100svh_-_90px)] bg-[#F7F7F7] pt-10 xl:pt-20 pb-10 md:pb-14 lg:pb-20 xl:pb-[100px] overflow-hidden;
 
     .Container {
-      @apply space-y-8 lg:space-y-0;
+      @apply space-y-8 md:space-y-0;
       .TopLeft {
-        @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px] md:w-[48.4vw] shrink-0;
+        @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px] md:w-[54vw] lg:w-[48.4vw] shrink-0;
 
         .Texts {
-          @apply space-y-3 xl:space-y-5 md:text-center lg:text-left md:w-3/4 lg:w-auto;
+          @apply space-y-3 xl:space-y-5 text-left;
 
           p {
             @apply xl:text-[1.66vw];
@@ -724,10 +724,10 @@ export default {
         @apply grow shrink-0;
 
         .Image {
-          @apply relative md:-right-[6.24vw] md:w-full;
+          @apply relative md:-right-[6.24vw] xl:-right-[3vw] 2xl:-right-[6.24vw] md:w-full;
 
           img {
-            @apply md:w-[40vw] mx-auto lg:mx-0
+            @apply md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw] mx-auto lg:mx-0
           }
         }
       }
