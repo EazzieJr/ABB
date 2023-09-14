@@ -157,7 +157,7 @@
         
         <div class="SwiperContainer">
           <div class="SwiperProducts">
-            <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
+            <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell" data-cursor-text="View">
               <img :src="`/images/illustrations/${el.src}.webp`" alt="">
             </div>
           </div>
@@ -217,7 +217,14 @@
       </div>
     </section>
 
-    <div class="mf-cursor z-[1000] -left-5 -top-5 translate-x-1/2 translate-y-1/2"></div>
+    <div class="mf-cursor z-[1000] -left-5 -top-5 translate-x-1/2 translate-y-1/2">
+      <div class="mf-cursor-inner">
+        <div class="mf-cursor-media">
+          <div class="mf-cursor-media-box"></div>
+        </div>
+        <div class="mf-cursor-text"></div>
+      </div>
+    </div>
 
     <!-- <div class="main-carousel">
       <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
@@ -425,7 +432,7 @@ export default {
   methods: {
     initCursor() {
       const cursor = new MouseFollower({
-        el: ".mf-cursor",
+        // el: ".mf-cursor",
         skewing: 3,
         stateDetection: {
           '-pointer': 'a,button',
