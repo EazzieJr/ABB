@@ -300,8 +300,8 @@ footer {
 			}
 
 			button {
-				@apply px-9 lg:px-10 xl:px-[50px] py-3.5 lg:py-4 xl:py-5 rounded-[10px] bg-secondary font-semibold text-primary
-			}
+        @apply w-fit mx-auto text-primary bg-secondary rounded-lg xl:rounded-xl px-5 xl:px-[30px] py-3.5 xl:py-4 block font-semibold text-sm xl:text-[15px] !leading-[120%]
+      }
 		}
 		
 		.Bottom {
@@ -315,7 +315,7 @@ footer {
 				@apply space-x-3.5 xl:space-x-4;
 
 				.Link {
-					@apply rounded-[15px] px-4 py-3.5 border border-white border-opacity-40;
+					@apply rounded-[15px] px-4 py-3.5 border border-white border-opacity-40 hover:border-secondary duration-500;
 
 					img {
 						@apply w-5 xl:w-6
@@ -327,14 +327,6 @@ footer {
 
 	.SvgBg {
 		@apply object-cover object-center w-full h-full absolute top-0 left-0
-	}
-
-	/* > svg g g {
-		@apply translate-y-1/2;
-	} */
-
-	.BG {
-		@apply absolute object-cover object-left md:object-center w-full h-full top-0 left-0
 	}
 }
 </style>
