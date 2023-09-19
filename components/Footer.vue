@@ -23,7 +23,7 @@
 				</span>
 
 				<div class="Links center md:start">
-					<a v-for="link in links" :key="link.name" :href="link.link" class="Link">
+					<a v-for="link in links" :key="link.name" :href="`https://${link.link}`" target="blank" class="Link">
 						<img :src="`/svg/${link.name}.svg`" :alt="`An incon representing ${link.name}`">
 					</a>
 				</div>
@@ -209,19 +209,19 @@ export default {
 			links: [
 				{
 					name: "dribbble",
-					link: ""
+					link: "dribbble.com/abb_design"
 				},
 				{
 					name: "instagram",
-					link: ""
+					link: "www.instagram.com/abb_icons/"
 				},
 				{
 					name: "linkedin",
-					link: ""
+					link: "www.linkedin.com/in/carolugwu"
 				},
 				{
 					name: "twitter",
-					link: ""
+					link: "twitter.com/CarolUgwu"
 				},
 			]
 		}
