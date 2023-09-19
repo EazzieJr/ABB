@@ -157,7 +157,7 @@
         
         <div class="SwiperContainer">
           <div class="SwiperProducts">
-            <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell" data-cursor-text="View">
+            <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
               <img :src="`/images/illustrations/${el.src}.webp`" alt="">
             </div>
           </div>
