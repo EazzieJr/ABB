@@ -19,7 +19,7 @@
 	}
 
 	p {
-		@apply lg:text-base xl:text-[1.38vw] !leading-[142%]
+		@apply lg:text-base xl:text-[1.39vw] !leading-[142%]
 	}
 
 	h1, h2, h3, h4, h5, .TextAnim span {

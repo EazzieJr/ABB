@@ -824,17 +824,17 @@ export default {
     @apply my-16 md:my-20 lg:my-24 xl:my-[8.33vw] overflow-hidden;
     
     .Container {
-      @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
+      @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20 !pr-0;
 
       h3 {
         @apply text-center
       }
 
       .Content {
-        @apply space-y-10 md:space-y-0 md:space-x-5 2xl:space-x-20;
+        @apply space-y-10 md:space-y-0 md:space-x-5 xl:space-x-[5.55vw];
 
         .TopLeft {
-          @apply md:w-[46%] xl:w-[50%] shrink-0 space-y-5 lg:space-y-7 xl:space-y-10;
+          @apply md:w-[46%] xl:w-[42vw] shrink-0 space-y-5 lg:space-y-7 xl:space-y-10;
 
           p {
             @apply xl:-tracking-[0.01em] 2xl:tracking-normal
@@ -847,7 +847,7 @@ export default {
 
         .BottomRight {
           .Image {
-            @apply -mr-5 xl:-mr-[100px] xl:w-[45.48vw]
+            @apply xl:w-[45.48vw]
           }
         }
       }
