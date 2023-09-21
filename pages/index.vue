@@ -685,10 +685,6 @@ export default {
 
         .Texts {
           @apply space-y-3 xl:space-y-5 text-left;
-
-          p {
-            @apply xl:text-[1.66vw];
-          }
         }
 
         .Buttons {
