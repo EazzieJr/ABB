@@ -217,6 +217,82 @@
       </div>
     </section>
 
+    <div class="Modal center">
+      <div class="Popup">
+        <div class="Top between">
+          <span>
+            Contact me
+          </span>
+
+          <button class="Close" @click="closeModal">
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="25" height="25" rx="12.5" fill="#212121"/>
+              <rect width="15" height="15" transform="translate(5 5)" fill="#212121"/>
+              <path d="M16.25 8.75L8.75 16.25" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.75 8.75L16.25 16.25" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="Mid">
+          <form action="" @submit.prevent="sendMail">
+            <div class="Input">
+              <label for="Name">Name</label>
+
+              <input type="text" v-model="guest.name" placeholder="Enter name" name="Name">
+            </div>
+
+            <div class="Input">
+              <label for="Email">Email</label>
+
+              <input type="text" v-model="guest.email" placeholder="Enter email" name="Email">
+            </div>
+
+            <div class="Input">
+              <label>Services</label>
+
+              <div class="PickServices between">
+                <span v-if="guest.services === null">
+                  Select service
+                </span>
+                
+                <div v-else class="Services">
+                  <div v-for="service in guest.services" :key="service" class="Service">
+                    <span>
+                      {{ service }}
+                    </span>
+
+                    <button>
+                      <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4.5L4 12.5" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 4.5L12 12.5" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.72456 6.64137C3.94645 6.41948 4.29367 6.39931 4.53835 6.58086L4.60845 6.64137L9.99984 12.0325L15.3912 6.64137C15.6131 6.41948 15.9603 6.39931 16.205 6.58086L16.2751 6.64137C16.497 6.86326 16.5172 7.21048 16.3356 7.45516L16.2751 7.52525L10.4418 13.3586C10.2199 13.5805 9.87267 13.6006 9.628 13.4191L9.5579 13.3586L3.72456 7.52525C3.48048 7.28118 3.48048 6.88545 3.72456 6.64137Z" fill="#656565"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="Input">
+              <label for="Message">Message</label>
+
+              <textarea v-model="guest.message" placeholder="Write here..." name="Message"></textarea>
+            </div>
+          </form>
+        </div>
+
+        <div class="Bottom">
+          <button class="Send" @click="sendMail">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="mf-cursor z-[1000] -left-5 -top-5 translate-x-1/2 translate-y-1/2">
       <div class="mf-cursor-inner">
         <div class="mf-cursor-media">
@@ -425,7 +501,14 @@ export default {
           src: "fries",
           link: "/"
         },
-      ]
+      ],
+
+      guest: {
+        name: null,
+        email: null,
+        services: ["Branding", "Icons", "Illustrations"],
+        message: null
+      }
     }
   },
 
@@ -516,6 +599,10 @@ export default {
         yPercent: 0,
         stagger: 0.2
       })
+    },
+
+    initAboutAnimation() {
+
     },
 
     initIllustrationInteractions() {
@@ -661,9 +748,25 @@ export default {
         this.flkty.next();
       }
     },
+
+    closeModal() {
+
+    },
+
+    sendMail() {
+      console.log(this.guest)
+
+      this.guest = {
+        name: null,
+        email: null,
+        services: null,
+        message: null
+      }
+    }
   }, 
 
   mounted() {
+    this.initAboutAnimation()
     this.initCursor()
     this.initStylesInteractions()
     this.initIllustrationInteractions()
@@ -945,6 +1048,87 @@ export default {
       }
     }
   }
+
+  .Modal {
+    @apply bg-black bg-opacity-50 fixed top-0 left-0 w-full h-full z-[1000] backdrop-blur-sm;
+
+    .Popup {
+      @apply bg-white space-y-6 xl:space-y-[30px] rounded-2xl xl:rounded-[20px] overflow-hidden w-full mx-5 max-w-[360px] lg:max-w-[420px] xl:max-w-[480px];
+
+      .Top {
+        @apply bg-[#F8F8F8] border-b-[1.5px] border-[#E5E5E5] py-3.5 xl:py-5 px-5 xl:px-[30px];
+
+        span {
+          @apply block tracking-[0.016em] font-interTight font-semibold text-sm xl:text-base text-[#292D32];
+          font-feature-settings: 'clig' off, 'liga' off;
+        }
+
+        button {
+          svg {
+            @apply w-5 xl:w-auto
+          }
+        }
+      }
+
+      .Mid {
+        @apply px-5 xl:px-[30px];
+
+        form {
+          @apply space-y-4 xl:space-y-[22px];
+
+          .Input {
+            @apply space-y-2 xl:space-y-2.5 w-full;
+
+            label {
+              @apply block text-xs xl:text-sm font-medium !leading-[128.571%] text-primary
+            }
+
+            input, textarea {
+              @apply border border-[#E0E0E0] rounded-lg xl:rounded-xl placeholder:text-[#8F92A1] tracking-[-0.015em] w-full text-primary text-sm xl:text-base focus:border-primary !leading-[100%];
+            }
+
+            input {
+              @apply py-3.5 xl:py-[18px] px-3 xl:px-[15px]
+            }
+
+            textarea {
+              @apply bg-[#F8F8F8] px-3 xl:px-[15px] py-2.5 xl:py-3 h-[120px] xl:h-[150px] resize-none;         
+            }
+
+            .PickServices {
+              @apply border border-[#E0E0E0] rounded-lg xl:rounded-xl pb-2 xl:pb-2.5 px-3 xl:px-[15px];
+
+              .Services {
+                @apply space-x-2 xl:space-x-2.5 text-xs xl:text-sm;
+
+                .Service {
+                  @apply p-1.5 xl:p-2 bg-[#F8F8F8] space-x-2 xl:space-x-2.5 rounded-md xl:rounded-lg inline-flex mt-2 xl:mt-2.5;
+
+                  button {
+                    svg {
+                      @apply w-3 xl:w-4
+                    }
+                  }
+                }
+              }
+
+              > svg {
+                @apply mt-2 xl:mt-2.5
+              }
+            }
+          }
+        }
+      }
+
+      .Bottom {
+        @apply border-t-[1.5px] border-[#F2F2F2] py-3 xl:py-[15px] px-5 xl:px-[30px];
+
+        .Send {
+          @apply w-full bg-primary py-3 xl:py-4 rounded-lg xl:rounded-[10px] text-sm xl:text-base font-semibold text-white;
+        }
+      }
+    }
+  }
 }
 
 .TextAnim {
@@ -959,3 +1143,4 @@ export default {
   }
 }
 </style>
+
