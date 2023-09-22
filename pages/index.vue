@@ -18,7 +18,7 @@
               Download Icon
             </button>
             
-            <button class="ContactMe">
+            <button class="ContactMe" @click="toggleModal">
               Contact Me
             </button>
           </div>
@@ -217,102 +217,104 @@
       </div>
     </section>
 
-    <div class="Modal center">
-      <div class="Popup">
-        <div class="Top between">
-          <span>
-            Contact me
-          </span>
-
-          <button class="Close" @click="closeModal">
-            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="25" height="25" rx="12.5" fill="#212121"/>
-              <rect width="15" height="15" transform="translate(5 5)" fill="#212121"/>
-              <path d="M16.25 8.75L8.75 16.25" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8.75 8.75L16.25 16.25" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-
-        <div class="Mid" @click="closeSelection">
-          <form action="" @submit.prevent="sendMail">
-            <div class="Input">
-              <label for="Name">Name</label>
-
-              <input type="text" v-model="guest.name" placeholder="Enter name" name="Name">
-            </div>
-
-            <div class="Input">
-              <label for="Email">Email</label>
-
-              <input type="text" v-model="guest.email" placeholder="Enter email" name="Email">
-            </div>
-
-            <div class="Input">
-              <label>Services</label>
-
-              <div class="PickServices between" @click.self="toggleServicesSelection">
-                <span v-if="guest.services.length === 0" @click="toggleServicesSelection">
-                  Select service
-                </span>
-                
-                <div v-else class="Services" @click="toggleServicesSelection">
-                  <div v-for="(service, index) in guest.services" :key="service.name" class="Service">
-                    <span>
-                      {{ service.name }}
-                    </span>
-
-                    <div @click="removeIndex(index)">
-                      <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 4.5L4 12.5" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M4 4.5L12 12.5" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <svg @click="toggleServicesSelection" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.72456 6.64137C3.94645 6.41948 4.29367 6.39931 4.53835 6.58086L4.60845 6.64137L9.99984 12.0325L15.3912 6.64137C15.6131 6.41948 15.9603 6.39931 16.205 6.58086L16.2751 6.64137C16.497 6.86326 16.5172 7.21048 16.3356 7.45516L16.2751 7.52525L10.4418 13.3586C10.2199 13.5805 9.87267 13.6006 9.628 13.4191L9.5579 13.3586L3.72456 7.52525C3.48048 7.28118 3.48048 6.88545 3.72456 6.64137Z" fill="#656565"/>
-                </svg>
-
-                <transition>
-                  <div v-if="toggleServices" class="Selection">
-                    <div v-for="(option, index) in options" :key="index" class="Option start" :class="{'Selected' : option.selected}">
-                      <div class="Checked" @click="option.selected = !option.selected">
-                        <svg v-if="!option.selected" class="false" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect x="0.5" y="0.5" width="17" height="17" rx="3.5" stroke="#8F92A1"/>
-                        </svg>
-
-                        <svg v-else width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect width="18" height="18" rx="4" fill="#212121"/>
-                          <path d="M7.72136 12.375C7.54127 12.375 7.37019 12.2997 7.24412 12.1678L4.69585 9.50266C4.43472 9.22955 4.43472 8.77751 4.69585 8.5044C4.95698 8.2313 5.38919 8.2313 5.65033 8.5044L7.72136 10.6704L12.3497 5.82983C12.6108 5.55672 13.043 5.55672 13.3042 5.82983C13.5653 6.10294 13.5653 6.55498 13.3042 6.82809L8.1986 12.1678C8.07254 12.2997 7.90145 12.375 7.72136 12.375Z" fill="white"/>
+    <transition name="fade">
+      <div v-if="modalOpened" class="Modal center" @click.self="toggleModal">
+        <div class="Popup">
+          <div class="Top between">
+            <span>
+              Contact me
+            </span>
+  
+            <button class="Close" @click="toggleModal">
+              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="25" height="25" rx="12.5" fill="#212121"/>
+                <rect width="15" height="15" transform="translate(5 5)" fill="#212121"/>
+                <path d="M16.25 8.75L8.75 16.25" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.75 8.75L16.25 16.25" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+  
+          <div class="Mid" @click="closeSelection">
+            <form action="" @submit.prevent="sendMail">
+              <div class="Input">
+                <label for="Name">Name</label>
+  
+                <input type="text" v-model="guest.name" placeholder="Enter name" name="Name">
+              </div>
+  
+              <div class="Input">
+                <label for="Email">Email</label>
+  
+                <input type="text" v-model="guest.email" placeholder="Enter email" name="Email">
+              </div>
+  
+              <div class="Input">
+                <label>Services</label>
+  
+                <div class="PickServices between" @click.self="toggleServicesSelection">
+                  <span v-if="guest.services.length === 0" @click="toggleServicesSelection">
+                    Select service
+                  </span>
+                  
+                  <div v-else class="Services" @click="toggleServicesSelection">
+                    <div v-for="(service, index) in guest.services" :key="service.name" class="Service">
+                      <span>
+                        {{ service.name }}
+                      </span>
+  
+                      <div @click="removeIndex(index)">
+                        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 4.5L4 12.5" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M4 4.5L12 12.5" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                       </div>
-
-                      <span>
-                        {{ option.name }}
-                      </span>
                     </div>
                   </div>
-                </transition>
+  
+                  <svg @click="toggleServicesSelection" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.72456 6.64137C3.94645 6.41948 4.29367 6.39931 4.53835 6.58086L4.60845 6.64137L9.99984 12.0325L15.3912 6.64137C15.6131 6.41948 15.9603 6.39931 16.205 6.58086L16.2751 6.64137C16.497 6.86326 16.5172 7.21048 16.3356 7.45516L16.2751 7.52525L10.4418 13.3586C10.2199 13.5805 9.87267 13.6006 9.628 13.4191L9.5579 13.3586L3.72456 7.52525C3.48048 7.28118 3.48048 6.88545 3.72456 6.64137Z" fill="#656565"/>
+                  </svg>
+  
+                  <transition name="fade">
+                    <div v-if="toggleServices" class="Selection">
+                      <div v-for="(option, index) in options" :key="index" class="Option start" :class="{'Selected' : option.selected}">
+                        <div class="Checked" @click="option.selected = !option.selected">
+                          <svg v-if="!option.selected" class="false" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0.5" y="0.5" width="17" height="17" rx="3.5" stroke="#8F92A1"/>
+                          </svg>
+  
+                          <svg v-else width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="4" fill="#212121"/>
+                            <path d="M7.72136 12.375C7.54127 12.375 7.37019 12.2997 7.24412 12.1678L4.69585 9.50266C4.43472 9.22955 4.43472 8.77751 4.69585 8.5044C4.95698 8.2313 5.38919 8.2313 5.65033 8.5044L7.72136 10.6704L12.3497 5.82983C12.6108 5.55672 13.043 5.55672 13.3042 5.82983C13.5653 6.10294 13.5653 6.55498 13.3042 6.82809L8.1986 12.1678C8.07254 12.2997 7.90145 12.375 7.72136 12.375Z" fill="white"/>
+                          </svg>
+                        </div>
+  
+                        <span>
+                          {{ option.name }}
+                        </span>
+                      </div>
+                    </div>
+                  </transition>
+                </div>
               </div>
-            </div>
-
-            <div class="Input">
-              <label for="Message">Message</label>
-
-              <textarea v-model="guest.message" placeholder="Write here..." name="Message"></textarea>
-            </div>
-          </form>
-        </div>
-
-        <div class="Bottom">
-          <button class="Send" @click="sendMail">
-            Send
-          </button>
+  
+              <div class="Input">
+                <label for="Message">Message</label>
+  
+                <textarea v-model="guest.message" placeholder="Write here..." name="Message"></textarea>
+              </div>
+            </form>
+          </div>
+  
+          <div class="Bottom">
+            <button class="Send" @click="sendMail">
+              Send
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
 
     <div class="mf-cursor z-[1000] -left-5 -top-5 translate-x-1/2 translate-y-1/2">
       <div class="mf-cursor-inner">
@@ -340,6 +342,7 @@ import MouseFollower from "mouse-follower";
 import { gsap } from 'gsap/dist/gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { TextPlugin } from 'gsap/dist/TextPlugin'
+import { mapState, mapMutations } from 'vuex'
 
 MouseFollower.registerGSAP(gsap);
 gsap.registerPlugin(ScrollTrigger, TextPlugin)
@@ -546,11 +549,17 @@ export default {
         }
       ],
 
-      toggleServices: false
+      toggleServices: false,
     }
   },
 
+  computed: {
+    ...mapState(["modalOpened"])
+  },
+
   methods: {
+    ...mapMutations(["toggleModal"]),
+    
     initCursor() {
       const cursor = new MouseFollower({
         // el: ".mf-cursor",
@@ -785,10 +794,6 @@ export default {
       if (this.flkty) {
         this.flkty.next();
       }
-    },
-
-    closeModal() {
-
     },
 
     sendMail() {
@@ -1245,5 +1250,14 @@ export default {
     @apply absolute top-0 left-0
   }
 }
-</style>
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

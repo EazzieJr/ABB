@@ -6,7 +6,7 @@
 			</nuxt-link>
 
 			<div class="Buttons start">
-				<button class="ContactMe">
+				<button class="ContactMe" @click="toggleModal">
 					Contact Me
 				</button>
 
@@ -24,8 +24,11 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
-	
+	methods: {
+		...mapMutations(["toggleModal"])
+	}
 }
 </script>
 
