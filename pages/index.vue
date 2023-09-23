@@ -115,23 +115,33 @@
     
     <section class="About">
       <div class="Container constraint">
-        <h3>
-          About Our Creator
-        </h3>
+        <div class="TextAnim">
+          <h3>
+            About Our Creator
+          </h3>
+
+          <span>
+            About Our Creator
+          </span>
+        </div>
 
         <div class="Content md:between">
           <div class="TopLeft">
             <p>
               I'm Carol, based in Toronto, Canada. I've polished my skills in Adobe Creative Suite, with a strong focus on Illustrator and Photoshop.
-              <br/><br/>
+            </p>
+
+            <p>
               What makes me stand out is my talent for turning ideas into designs that are seriously captivating. Whether I'm whipping up snazzy brand identities, nailing those pixel-perfect icons, or bringing illustrations to life, I'm all about adding that extra dash of pizzazz.
-              <br/><br/>
+            </p>
+
+            <p>
               If you've got a project in mind, don't hesitate to reach out to me!
             </p>
 
-            <a href="" class="ContactMe">
+            <button @click="toggleModal" href="" class="ContactMe">
               Contact Me
-            </a>
+            </button>
           </div>
 
           <div class="BottomRight">
@@ -649,7 +659,156 @@ export default {
     },
 
     initAboutAnimation() {
+      
+      const bodies = document.querySelectorAll(".About p")
 
+			const bodyOne = bodies[0]
+			const bodyTwo = bodies[1]
+      const bodyThree = bodies[2]
+      
+			const splittedTextOne = this.$splitting({ target: bodyOne, by: "lines" });
+			const splittedTextTwo = this.$splitting({ target: bodyTwo, by: "lines" });
+      const splittedTextThree = this.$splitting({ target: bodyThree, by: "lines" });
+
+      this.textAnim('.About', '.About .TextAnim span')
+
+      const animateLines = (el, trigger) => {
+        gsap.to(el, {
+          scrollTrigger: {
+            trigger: trigger,
+            start: "top 60%",
+            toggleActions: "play none none reset"
+          },
+
+          y: 0,
+          ease: "power4.out",
+          duration: 1,
+          stagger: 0.1
+        })
+      }
+
+      splittedTextOne[0].lines.forEach(line => {
+        // console.log(line)
+        const span = document.createElement("span")
+        const outerSpan = document.createElement("span")
+        const whitespaces = document.querySelectorAll("p > .whitespace")
+        whitespaces.forEach(el => {
+          el.remove()
+        })
+
+        line.forEach(word => {
+          const whitespace = document.createElement("span")
+          whitespace.innerHTML = " "
+
+          span.appendChild(word)
+          span.appendChild(whitespace)
+          // console.log(span, word.innerHTML)
+        })
+
+
+        span.className = "Line"
+        outerSpan.appendChild(span)
+        bodyOne.appendChild(outerSpan)
+
+        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+        gsap.set(".About p .Line", { y: "100%", display: "block" })
+      })
+
+      splittedTextTwo[0].lines.forEach(line => {
+        // console.log(line)
+        const span = document.createElement("span")
+        const outerSpan = document.createElement("span")
+        const whitespaces = document.querySelectorAll("p > .whitespace")
+        whitespaces.forEach(el => {
+          el.remove()
+        })
+
+        line.forEach(word => {
+          const whitespace = document.createElement("span")
+          whitespace.innerHTML = " "
+
+          span.appendChild(word)
+          span.appendChild(whitespace)
+          // console.log(span, word.innerHTML)
+        })
+
+
+        span.className = "Line"
+        outerSpan.appendChild(span)
+        bodyTwo.appendChild(outerSpan)
+
+        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+        gsap.set(".About p .Line", { y: "100%", display: "block" })
+      });
+
+      splittedTextThree[0].lines.forEach(line => {
+        // console.log(line)
+        const span = document.createElement("span")
+        const outerSpan = document.createElement("span")
+        const whitespaces = document.querySelectorAll("p > .whitespace")
+        whitespaces.forEach(el => {
+          el.remove()
+        })
+
+        line.forEach(word => {
+          const whitespace = document.createElement("span")
+          whitespace.innerHTML = " "
+
+          span.appendChild(word)
+          span.appendChild(whitespace)
+          // console.log(span, word.innerHTML)
+        })
+
+
+        span.className = "Line"
+        outerSpan.appendChild(span)
+        bodyThree.appendChild(outerSpan)
+
+        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+        gsap.set(".About p .Line", { y: "100%", display: "block" })
+      })
+
+      const innerBodies = document.querySelectorAll(".About p > span")
+      const base = window.matchMedia("(max-width: 767px)")
+
+       gsap.to(".About .TopLeft", {
+        scrollTrigger: {
+          trigger: ".About .TopLeft",
+          start: base.matches ? "top 70%" : "top 50%",
+          onEnter: () => {
+            innerBodies.forEach((el, index) => {
+              gsap.to(el.children, {
+                y: 0,
+                ease: "power4.out",
+                duration: 1,
+                delay: index * 0.05,
+              })
+            })
+          }
+         }, onComplete: () => {
+           gsap.fromTo(".About .ContactMe", {
+            opacity: 0
+           }, {
+            opacity: 1
+          })
+        }
+      })
+
+      // tl.to(splittedTextTwo[0].lines, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: "power4.in",
+      //   duration: 0.75,
+      //   stagger: 0.01
+      // }, '<0.1')
+
+      // tl.to(splittedTextThree[0].lines, {
+      //   opacity: 1,
+      //   y: 0,
+      //   ease: "power4.in",
+      //   duration: 0.75,
+      //   stagger: 0.01
+      // }, '<0.1')
     },
 
     initIllustrationInteractions() {
@@ -1012,9 +1171,14 @@ export default {
     .Container {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20 !pr-0;
 
-      h3 {
-        @apply text-center
+      .TextAnim {
+        @apply  w-fit mx-auto;
+
+        h3 {
+          @apply text-center
+        }
       }
+
 
       .Content {
         @apply space-y-10 md:space-y-0 md:space-x-5 xl:space-x-[5.55vw];
@@ -1023,7 +1187,11 @@ export default {
           @apply md:w-[46%] xl:w-[42vw] shrink-0 space-y-5 lg:space-y-7 xl:space-y-10;
 
           p {
-            @apply xl:-tracking-[0.01em] 2xl:tracking-normal
+            @apply xl:-tracking-[0.01em] 2xl:tracking-normal;
+
+            span {
+              @apply block
+            }
           }
 
           .ContactMe {
