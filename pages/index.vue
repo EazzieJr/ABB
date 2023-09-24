@@ -24,9 +24,9 @@
           </div>
 
           <div class="Tools start">
-            <a v-for="tool in tools" :key="tool.name" :href="tool.link">
+            <div v-for="tool in tools" :key="tool.name">
               <img :src="`/svg/${tool.name}.svg`" alt="">
-            </a>
+            </div>
           </div>
         </div>
 
@@ -635,6 +635,102 @@ export default {
       });
     },
 
+    animateHero() {
+      const h1 = document.querySelector(".Hero h1")
+      const body = document.querySelector(".Hero p")
+			const splittedH1 = this.$splitting({ target: h1, by: "lines" });
+			const splittedBody = this.$splitting({ target: body, by: "lines" });
+
+      const tl = gsap.timeline({
+        defaults: {
+          y: 0,
+          ease: "power4.out",
+          duration: 1,
+          stagger: 0.05,
+        }
+      })
+      
+      splittedH1[0].lines.forEach(line => {
+        // console.log(line)
+        const span = document.createElement("span")
+        const outerSpan = document.createElement("span")
+        const whitespaces = document.querySelectorAll("h1 > .whitespace")
+        whitespaces.forEach(el => {
+          el.remove()
+        })
+
+        line.forEach(word => {
+          const whitespace = document.createElement("span")
+          whitespace.innerHTML = " "
+
+          span.appendChild(word)
+          span.appendChild(whitespace)
+          // console.log(span, word.innerHTML)
+        })
+
+
+        span.className = "Line"
+        outerSpan.appendChild(span)
+        h1.appendChild(outerSpan)
+
+        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+        gsap.set("h1 .word", { y: "100%", display: "inline-block" })
+      })
+
+      splittedBody[0].lines.forEach(line => {
+        // console.log(line)
+        const span = document.createElement("span")
+        const outerSpan = document.createElement("span")
+        const whitespaces = document.querySelectorAll("h1 > .whitespace")
+        whitespaces.forEach(el => {
+          el.remove()
+        })
+
+        line.forEach(word => {
+          const whitespace = document.createElement("span")
+          whitespace.innerHTML = " "
+
+          span.appendChild(word)
+          span.appendChild(whitespace)
+          // console.log(span, word.innerHTML)
+        })
+
+
+        span.className = "Line"
+        outerSpan.appendChild(span)
+        body.appendChild(outerSpan)
+
+        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+        gsap.set(".Hero p .Line", { y: "100%", display: "block" })
+      })
+
+
+      tl.to(splittedH1[0].lines, {
+        delay: 1,
+        onStart: () => {
+          gsap.set("h1", {opacity: 1})
+        }
+      })
+
+      tl.to(".Hero p .Line", {
+        onStart: () => {
+          gsap.set(".Hero p ", {opacity: 1})
+        }
+      }, '-=1')
+      
+      tl.to(".Buttons button", {
+        opacity: 1
+      }, '-=1')
+
+      tl.to(".Tools div", {
+        opacity: 1
+      }, '-=1')
+
+      tl.to(".Hero .BottomRight img", {
+        opacity: 1
+      }, 0.5)
+    },
+    
     initStylesInteractions() {
       const styles = document.querySelectorAll('.Type')
       
@@ -786,9 +882,7 @@ export default {
             })
           }
          }, onComplete: () => {
-           gsap.fromTo(".About .ContactMe", {
-            opacity: 0
-           }, {
+           gsap.to(".About .ContactMe", {
             opacity: 1
           })
         }
@@ -1012,6 +1106,7 @@ export default {
   }, 
 
   mounted() {
+    this.animateHero()
     this.initAboutAnimation()
     this.initCursor()
     this.initStylesInteractions()
@@ -1034,13 +1129,25 @@ export default {
 
         .Texts {
           @apply space-y-3 xl:space-y-5 text-left;
+
+          h1 {
+            @apply opacity-0;
+            
+            span {
+              @apply block
+            }
+          }
+
+          p {
+            @apply opacity-0
+          }
         }
 
         .Buttons {
           @apply space-x-5 font-inter;
 
           .ContactMe, .DownloadIcon {
-            @apply font-semibold text-sm xl:text-[15px] 2xl:text-base !leading-[120%] rounded-lg xl:rounded-xl block w-fit text-primary;
+            @apply font-semibold text-sm xl:text-[15px] 2xl:text-base !leading-[120%] rounded-lg xl:rounded-xl block w-fit text-primary opacity-0;
           }
 
           .DownloadIcon {
@@ -1055,8 +1162,8 @@ export default {
         .Tools {
           @apply space-x-5 xl:space-x-[46px];
 
-          a {
-            @apply block;
+          > div {
+            @apply block opacity-0;
 
             img {
               @apply w-11 md:w-[3.81vw]
@@ -1072,7 +1179,7 @@ export default {
           @apply relative md:-right-[6.24vw] xl:-right-[3vw] 2xl:-right-[6.24vw] md:w-full;
 
           img {
-            @apply md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw] mx-auto lg:mx-0
+            @apply w-[340px] h-[346px] md:h-auto md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw] mx-auto lg:mx-0 opacity-0
           }
         }
       }
@@ -1179,7 +1286,6 @@ export default {
         }
       }
 
-
       .Content {
         @apply space-y-10 md:space-y-0 md:space-x-5 xl:space-x-[5.55vw];
 
@@ -1195,7 +1301,7 @@ export default {
           }
 
           .ContactMe {
-            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] rounded-lg xl:rounded-xl py-3 xl:py-4 px-5 xl:px-6 font-semibold text-primary text-sm xl:text-[15px] 2xl:text-base leading-[120%] block w-fit
+            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] rounded-lg xl:rounded-xl py-3 xl:py-4 px-5 xl:px-6 font-semibold text-primary text-sm xl:text-[15px] 2xl:text-base leading-[120%] block w-fit opacity-0
           }
         }
 
