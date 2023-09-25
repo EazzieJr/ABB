@@ -220,10 +220,10 @@
             <img :src="`/images/products/product-${index+1}.webp`" alt="" class="ActualImage">
           </a>
         </div>
-
+<!-- 
         <a href="" class="ViewMore">
           View More
-        </a>
+        </a> -->
       </div>
     </section>
 
@@ -334,12 +334,6 @@
         <div class="mf-cursor-text"></div>
       </div>
     </div>
-
-    <!-- <div class="main-carousel">
-      <div v-for="(el, index) in carousel" :key="index" class="Carousel-cell">
-        <img :src="`/images/${el.src}.png`" alt="">
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -1326,10 +1320,10 @@ export default {
           /* @apply space-x-5 lg:space-x-7 xl:space-x-[30px]; */
 
           .Carousel-cell {
-            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px];
+            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px] w-80 lg:w-[440px] xl:w-[36.11vw] xl:h-[42.08vw];
 
             img {
-              @apply w-80 lg:w-[440px] xl:w-[41.66vw] 2xl:w-[38vw] duration-500;
+              @apply w-full duration-500;
               filter: saturate(0);
 
               &:hover {
@@ -1411,7 +1405,8 @@ export default {
   }
 
   .Modal {
-    @apply bg-black bg-opacity-50 fixed top-0 left-0 w-full h-full z-[1000] backdrop-blur-sm;
+    @apply bg-black bg-opacity-50 fixed top-0 left-0 w-full h-full z-[1000];
+    backdrop-filter: blur(4px);
 
     .Popup {
       @apply bg-white space-y-6 xl:space-y-[30px] rounded-2xl xl:rounded-[20px] overflow-hidden w-full mx-5 max-w-[360px] lg:max-w-[420px] xl:max-w-[480px];
