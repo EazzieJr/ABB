@@ -15,7 +15,7 @@
           
           <div class="Buttons start">
             <button class="DownloadIcon">
-              Download Icon
+              Download Icons
             </button>
             
             <button class="ContactMe" @click="toggleModal">
@@ -23,7 +23,7 @@
             </button>
           </div>
 
-          <div class="Tools start">
+          <div class="Tools between md:start">
             <div v-for="tool in tools" :key="tool.name">
               <img :src="`/svg/${tool.name}.svg`" alt="">
             </div>
@@ -229,7 +229,7 @@
 
     <transition name="fade">
       <div v-if="modalOpened" class="Modal center" @click.self="toggleModal">
-        <div class="Popup">
+        <div class="Popup" @click.self="closeSelection">
           <div class="Top between">
             <span>
               Contact me
@@ -245,8 +245,8 @@
             </button>
           </div>
   
-          <div class="Mid" @click="closeSelection">
-            <form action="" @submit.prevent="sendMail">
+          <div class="Mid">
+            <form action="" @submit.prevent="sendMail" @click.self="closeSelection">
               <div class="Input">
                 <label for="Name">Name</label>
   
@@ -1076,7 +1076,6 @@ export default {
     toggleServicesSelection() {
       if (this.toggleServices) {
         const newSelections = this.options.filter(el => el.selected)
-        console.log(newSelections)
         this.toggleServices = false
         this.guest.services = newSelections
         console.log(this.guest.services)
@@ -1091,7 +1090,8 @@ export default {
     },
 
     closeSelection() {
-      if (this.togleServices) {
+      if (this.toggleServices) {
+        console.log("Services Closed")
         this.toggleServices = false
       } else {
         return
@@ -1114,15 +1114,14 @@ export default {
 <style lang="postcss" scoped>
 .IndexPage {
   .Hero {
-    @apply lg:h-[calc(100svh_-_90px)] bg-[#F7F7F7] pt-10 xl:pt-20 pb-10 md:pb-14 lg:pb-20 xl:pb-[100px] overflow-hidden;
+    @apply lg:h-[calc(100svh_-_90px)] bg-[#F7F7F7] pt-10 xl:pt-20 pb-0 md:pb-14 lg:pb-20 xl:pb-[100px] overflow-hidden;
 
     .Container {
-      @apply space-y-8 md:space-y-0;
       .TopLeft {
-        @apply space-y-8 md:space-y-10 lg:space-y-11 xl:space-y-[50px] md:w-[54vw] lg:w-[48.4vw] shrink-0;
+        @apply space-y-[30px] md:space-y-10 lg:space-y-11 xl:space-y-[50px] md:w-[54vw] lg:w-[48.4vw] shrink-0 mb-14 md:mb-0;
 
         .Texts {
-          @apply space-y-3 xl:space-y-5 text-left;
+          @apply space-y-4 xl:space-y-5 text-left;
 
           h1 {
             @apply opacity-0;
@@ -1141,15 +1140,15 @@ export default {
           @apply space-x-5 font-inter;
 
           .ContactMe, .DownloadIcon {
-            @apply font-semibold text-sm xl:text-[15px] 2xl:text-base !leading-[120%] rounded-lg xl:rounded-xl block w-fit text-primary opacity-0;
+            @apply font-semibold text-xs xl:text-[15px] 2xl:text-base !leading-[120%] rounded-lg xl:rounded-xl block w-fit text-primary opacity-0;
           }
 
           .DownloadIcon {
-            @apply bg-secondary px-4 py-3.5 xl:px-5 xl:py-4
+            @apply bg-secondary px-4 py-2.5 xl:px-5 xl:py-4
           }
 
           .ContactMe {
-            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] py-3.5 xl:py-4 px-5 xl:px-6 
+            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] py-2.5 xl:py-4 px-4 xl:px-6 
           }
         }
 
@@ -1167,7 +1166,7 @@ export default {
       }
 
       .BottomRight {
-        @apply grow shrink-0;
+        @apply grow shrink-0 -mb-[68px];
 
         .Image {
           @apply relative md:-right-[6.24vw] xl:-right-[3vw] 2xl:-right-[6.24vw] md:w-full;

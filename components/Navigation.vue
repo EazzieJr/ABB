@@ -13,11 +13,11 @@
 				<button class="DownloadIcon">
 					Download Icon
 				</button>
-				
+<!-- 				
 				<button class="MenuBurger">
 					<div class="top"></div>
 					<div class="bottom"></div>
-				</button>
+				</button> -->
 			</div>
 		</div>
 	</nav>
@@ -41,11 +41,11 @@ nav {
 			@apply space-x-6;
 
 			.ContactMe, .DownloadIcon {
-				@apply hidden md:block font-semibold text-sm xl:text-base leading-4 xl:leading-[18px];
+				@apply font-semibold text-sm xl:text-base leading-4 xl:leading-[18px];
 			}
 
 			.ContactMe {
-				@apply text-white
+				@apply text-white hidden md:block
 			}
 
 			.DownloadIcon {
