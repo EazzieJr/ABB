@@ -1207,14 +1207,14 @@ export default {
             @apply border border-white border-opacity-20 rounded-2xl xl:rounded-[25px] w-full py-10 lg:py-12 xl:py-14 pl-5 lg:pl-7 xl:pl-[30px] pr-5 xl:pr-0 space-y-5 lg:space-y-7 xl:space-y-[30px];
 
             img {
-              @apply w-16 lg:w-20 xl:w-[100px] 2xl:w-[120px]
+              @apply w-14 lg:w-20 xl:w-[100px] 2xl:w-[120px]
             }
 
             .Texts {
               @apply space-y-3 xl:space-y-5;
 
               span {
-                @apply block font-interTight font-semibold text-white text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl capitalize;
+                @apply block font-interTight font-semibold text-white text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl capitalize;
               }
 
               p {
@@ -1269,7 +1269,7 @@ export default {
     @apply my-16 md:my-20 lg:my-24 xl:my-[8.33vw] overflow-hidden;
     
     .Container {
-      @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20 !pr-0;
+      @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20 md:!pr-0;
 
       .TextAnim {
         @apply  w-fit mx-auto;
@@ -1280,7 +1280,7 @@ export default {
       }
 
       .Content {
-        @apply space-y-10 md:space-y-0 md:space-x-5 xl:space-x-[5.55vw];
+        @apply space-y-9 md:space-y-0 md:space-x-5 xl:space-x-[5.55vw];
 
         .TopLeft {
           @apply md:w-[46%] xl:w-[42vw] shrink-0 space-y-5 lg:space-y-7 xl:space-y-10;
@@ -1294,13 +1294,13 @@ export default {
           }
 
           .ContactMe {
-            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] rounded-lg xl:rounded-xl py-3 xl:py-4 px-5 xl:px-6 font-semibold text-primary text-sm xl:text-[15px] 2xl:text-base leading-[120%] block w-fit opacity-0
+            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] rounded-lg xl:rounded-xl py-2.5 xl:py-4 px-4 xl:px-6 font-semibold text-primary text-xs xl:text-[15px] 2xl:text-base leading-[120%] block w-fit opacity-0
           }
         }
 
         .BottomRight {
           .Image {
-            @apply xl:w-[45.48vw]
+            @apply xl:w-[45.48vw] rounded-[16px] md:rounded-none overflow-hidden
           }
         }
       }
@@ -1319,7 +1319,7 @@ export default {
           /* @apply space-x-5 lg:space-x-7 xl:space-x-[30px]; */
 
           .Carousel-cell {
-            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px] w-80 lg:w-[440px] xl:w-[36.11vw] xl:h-[42.08vw];
+            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px] w-[276px] h-[322px] lg:w-[440px] lg:h-auto xl:w-[36.11vw] xl:h-[42.08vw];
 
             img {
               @apply w-full duration-500;
@@ -1342,7 +1342,7 @@ export default {
           @apply space-x-3 md:space-x-5;
 
           .Dot {
-            @apply w-3.5 h-3.5 xl:w-[15px] xl:h-[15px] rounded-full bg-[#DDDCDB];
+            @apply w-2 h-2 xl:w-[15px] xl:h-[15px] rounded-full bg-[#DDDCDB];
 
             &.active {
               @apply bg-primary
@@ -1354,7 +1354,7 @@ export default {
           @apply space-x-3.5 xl:space-x-[15px];
 
           button {
-            @apply w-10 h-10 xl:w-[50px] xl:h-[50px] bg-[#DDDCDB] rounded-full;
+            @apply w-9 h-9 xl:w-[50px] xl:h-[50px] bg-[#DDDCDB] rounded-full;
 
             &.active {
               @apply bg-primary;
@@ -1365,7 +1365,7 @@ export default {
             }
 
             svg {
-              @apply w-2.5 xl:w-3 duration-500;
+              @apply w-2 xl:w-3 duration-500;
             }
 
             &:hover {
