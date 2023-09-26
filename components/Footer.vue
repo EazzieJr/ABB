@@ -31,7 +31,7 @@
 		</div>
 
 		<div class="SvgBg">
-			<svg width="1440" height="674" viewBox="0 0 1440 674" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg viewBox="0 0 1440 674" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<g clip-path="url(#clip0_218_1118)">
 				<g opacity="0.8" filter="url(#filter0_b_218_1118)">
 				<rect width="139.248" height="139.248" rx="27.8496" transform="matrix(0.999914 0.0130896 0.164531 0.986372 -32 73)" fill="white" fill-opacity="0.07"/>

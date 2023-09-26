@@ -1166,7 +1166,7 @@ export default {
       }
 
       .BottomRight {
-        @apply grow shrink-0 -mb-[68px];
+        @apply grow shrink-0 -mb-[68px] md:mb-0;
 
         .Image {
           @apply relative md:-right-[6.24vw] xl:-right-[3vw] 2xl:-right-[6.24vw] md:w-full;
