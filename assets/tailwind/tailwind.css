@@ -25,6 +25,10 @@
 	h1, h2, h3, h4, h5, .TextAnim span {
 		@apply font-semibold text-4xl md:text-[44px] lg:text-[5.4vw] font-interTight !leading-[118%]
 	}
+
+	button {
+		@apply !font-inter
+	}
 }
 
 @layer utilities {
