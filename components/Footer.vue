@@ -287,15 +287,15 @@ footer {
 			}
 
 			button {
-        @apply w-fit mx-auto text-primary bg-secondary rounded-lg xl:rounded-xl px-5 xl:px-[30px] py-3.5 xl:py-4 block font-semibold text-sm xl:text-[15px] !leading-[120%]
+        @apply w-fit mx-auto text-primary bg-secondary rounded-lg xl:rounded-xl px-4 xl:px-[30px] py-2.5 xl:py-4 block font-semibold text-sm xl:text-[15px] !leading-[120%]
       }
 		}
 		
 		.Bottom {
-			@apply space-y-5 md:space-y-0;
+			@apply flex flex-col-reverse md:flex-row;
 
 			.Copyright {
-				@apply text-center text-sm !leading-[157%] text-[#C7C3C3] font-medium block md:text-left
+				@apply text-center text-sm !leading-[157%] text-[#C7C3C3] font-medium block md:text-left mt-5 md:mt-0
 			}
 
 			.Links {
