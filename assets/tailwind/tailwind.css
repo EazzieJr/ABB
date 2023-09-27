@@ -27,7 +27,7 @@
 	}
 
 	button {
-		@apply !font-inter
+		@apply font-interTight lg:font-inter
 	}
 }
 
