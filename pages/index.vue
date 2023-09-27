@@ -32,7 +32,8 @@
 
         <div class="BottomRight">
           <div class="Image">
-            <img src="/images/hero-image.webp" alt="">
+            <img class="Mobile" src="/images/mobile-hero-image.webp" alt="">
+            <img class="Desktop" src="/images/hero-image.webp" alt="">
           </div>
         </div>
       </div>
@@ -1172,7 +1173,15 @@ export default {
           @apply relative md:-right-[6.24vw] xl:-right-[3vw] 2xl:-right-[6.24vw] md:w-full;
 
           img {
-            @apply w-[340px] h-[346px] md:h-auto md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw] mx-auto lg:mx-0 opacity-0
+            @apply w-[340px] h-[346px] md:h-auto md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw] mx-auto lg:mx-0 opacity-0;
+
+            &.Desktop {
+              @apply hidden md:block
+            }
+
+            &.Mobile {
+              @apply md:hidden
+            }
           }
         }
       }
