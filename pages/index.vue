@@ -1266,7 +1266,7 @@ export default {
     @apply my-16 md:my-20 lg:my-24 xl:my-[8.33vw] overflow-hidden;
     
     .Container {
-      @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20 md:!pr-0;
+      @apply space-y-[30px] md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20 md:!pr-0;
 
       .TextAnim {
         @apply  w-fit mx-auto;
