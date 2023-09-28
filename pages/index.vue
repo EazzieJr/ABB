@@ -1325,7 +1325,7 @@ export default {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
 
       .SwiperContainer {
-        @apply -mx-5 xl:-mx-[4.86vw] pl-5 xl:pl-0;
+        @apply -mx-5 xl:-mx-[4.86vw] xl:pl-0;
         .SwiperProducts {
           /* @apply space-x-5 lg:space-x-7 xl:space-x-[30px]; */
 
