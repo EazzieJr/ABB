@@ -279,14 +279,14 @@
                     </div>
                   </div>
   
-                  <svg @click="toggleServicesSelection" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="duration-500" :class="{'rotate-180': toggleServices }" @click="toggleServicesSelection" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3.72456 6.64137C3.94645 6.41948 4.29367 6.39931 4.53835 6.58086L4.60845 6.64137L9.99984 12.0325L15.3912 6.64137C15.6131 6.41948 15.9603 6.39931 16.205 6.58086L16.2751 6.64137C16.497 6.86326 16.5172 7.21048 16.3356 7.45516L16.2751 7.52525L10.4418 13.3586C10.2199 13.5805 9.87267 13.6006 9.628 13.4191L9.5579 13.3586L3.72456 7.52525C3.48048 7.28118 3.48048 6.88545 3.72456 6.64137Z" fill="#656565"/>
                   </svg>
   
                   <transition name="fade">
                     <div v-if="toggleServices" class="Selection">
                       <div v-for="(option, index) in options" :key="index" class="Option start" :class="{'Selected' : option.selected}">
-                        <div class="Checked" @click="option.selected = !option.selected">
+                        <div class="Checked" @click="choose(index)">
                           <svg v-if="!option.selected" class="false" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="17" height="17" rx="3.5" stroke="#8F92A1"/>
                           </svg>
@@ -548,6 +548,12 @@ export default {
 
   computed: {
     ...mapState(["modalOpened"])
+  },
+
+  watch: {
+    options() {
+      this.checkSum()
+    }
   },
 
   methods: {
@@ -1067,7 +1073,7 @@ export default {
         const newSelections = this.options.filter(el => el.selected)
         this.toggleServices = false
         this.guest.services = newSelections
-        console.log(this.guest.services)
+        // console.log(this.guest.services)
         
       } else {
         this.toggleServices = true
@@ -1085,6 +1091,14 @@ export default {
       } else {
         return
       }
+    },
+
+    choose(index) {
+      this.options[index].selected = !this.options[index].selected
+      const newSelections = this.options.filter(el => el.selected)
+      this.guest.services = newSelections
+
+      // console.log("kk")
     }
   }, 
 
