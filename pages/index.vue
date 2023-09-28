@@ -23,7 +23,7 @@
             </button>
           </div>
 
-          <div class="Tools between md:start">
+          <div class="Tools start">
             <div v-for="tool in tools" :key="tool.name">
               <img :src="`/svg/${tool.name}.svg`" alt="">
             </div>
@@ -217,14 +217,10 @@
         </div>
 
         <div class="Products">
-          <a v-for="(product, index) in products" :key="index" href="/" class="Product">
+          <div v-for="(product, index) in products" :key="index" class="Product">
             <img :src="`/images/products/product-${index+1}.webp`" alt="" class="ActualImage">
-          </a>
+          </div>
         </div>
-<!-- 
-        <a href="" class="ViewMore">
-          View More
-        </a> -->
       </div>
     </section>
 
@@ -470,14 +466,6 @@ export default {
       tools: [
         {
           name: "figma",
-          link: "/"
-        },
-        {
-          name: "xd",
-          link: "/"
-        },
-        {
-          name: "sketch",
           link: "/"
         },
         {
@@ -1141,20 +1129,20 @@ export default {
           @apply space-x-5 font-inter;
 
           .ContactMe, .DownloadIcon {
-            @apply font-semibold text-xs xl:text-[15px] 2xl:text-base !leading-[120%] rounded-lg xl:rounded-xl block w-fit text-primary opacity-0;
+            @apply font-semibold text-xs xl:text-[15px] 2xl:text-base !leading-[125%] rounded-lg xl:rounded-xl block w-fit text-primary opacity-0;
           }
 
           .DownloadIcon {
-            @apply bg-secondary px-4 py-2.5 xl:px-5 xl:py-4
+            @apply bg-secondary px-4 py-3 xl:px-5 xl:py-4
           }
 
           .ContactMe {
-            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] py-2.5 xl:py-4 px-4 xl:px-6 
+            @apply bg-[#EAEAEA] border-[1.5px] border-[#E5E5E5] py-3 xl:py-4 px-4 xl:px-6 
           }
         }
 
         .Tools {
-          @apply space-x-5 xl:space-x-[46px];
+          @apply space-x-9 xl:space-x-[46px];
 
           > div {
             @apply block opacity-0;
@@ -1323,12 +1311,12 @@ export default {
       @apply space-y-10 md:space-y-14 lg:space-y-16 xl:space-y-[70px] 2xl:space-y-20;
 
       .SwiperContainer {
-        @apply -mx-5 xl:-mx-[4.86vw] pl-5 xl:pl-[4.86vw];
+        @apply -mx-5 xl:-mx-[4.86vw] pl-5 xl:pl-0;
         .SwiperProducts {
           /* @apply space-x-5 lg:space-x-7 xl:space-x-[30px]; */
 
           .Carousel-cell {
-            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px] w-[276px] h-[322px] lg:w-[440px] lg:h-auto xl:w-[36.11vw] xl:h-[42.08vw];
+            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px] w-[276px] h-[322px] lg:w-[440px] lg:h-auto xl:w-[32vw];
 
             img {
               @apply w-full duration-500;
@@ -1398,10 +1386,10 @@ export default {
         @apply grid grid-cols-1 md:grid-cols-2 gap-5;
 
         .Product {
-          @apply rounded-[16px] lg:rounded-[1.23vw] w-full max-w-[335px] md:max-w-none h-[355px] md:h-[376px] lg:h-[512px] xl:h-[47.22vw] overflow-hidden relative place-self-center md:place-self-auto;
+          @apply rounded-[16px] lg:rounded-[1.23vw] w-full md:h-[376px] lg:h-[512px] xl:h-[47.22vw] overflow-hidden relative place-self-center md:place-self-auto;
 
           .ActualImage {
-            @apply z-50 relative w-full h-full
+            @apply z-50 relative w-full h-full 
           }
         }
       }
