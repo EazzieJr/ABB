@@ -1487,7 +1487,7 @@ export default {
               }
 
               .Selection {
-                @apply absolute top-16 left-0 right-0 rounded-lg xl:rounded-xl overflow-hidden divide-y divide-[#E0E0E0] bg-white border border-primary;
+                @apply absolute top-14 left-0 right-0 rounded-lg xl:rounded-xl overflow-hidden divide-y divide-[#E0E0E0] bg-white border border-primary;
                 box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.20);
 
                 .Option {
