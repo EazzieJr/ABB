@@ -2,6 +2,6 @@
 	position: absolute !important;
 }
 
-/* .Carousel-cell:first-child {
-	margin-left: 16px !important;
-} */
+.flickity-viewport {
+	overflow: visible !important;
+}
