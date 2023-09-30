@@ -627,97 +627,100 @@ export default {
     animateHero() {
       const h1 = document.querySelector(".Hero h1")
       const body = document.querySelector(".Hero p")
-			const splittedH1 = this.$splitting({ target: h1, by: "lines" });
-			const splittedBody = this.$splitting({ target: body, by: "lines" });
 
-      const tl = gsap.timeline({
-        defaults: {
-          y: 0,
-          ease: "power4.out",
-          duration: 1,
-          stagger: 0.05,
-        }
-      })
-      
-      splittedH1[0].lines.forEach(line => {
-        // console.log(line)
-        const span = document.createElement("span")
-        const outerSpan = document.createElement("span")
-        const whitespaces = document.querySelectorAll("h1 > .whitespace")
-        whitespaces.forEach(el => {
-          el.remove()
+      setTimeout(() => {
+        const splittedH1 = this.$splitting({ target: h1, by: "lines" });
+        const splittedBody = this.$splitting({ target: body, by: "lines" });
+  
+        const tl = gsap.timeline({
+          defaults: {
+            y: 0,
+            ease: "power4.out",
+            duration: 1,
+            stagger: 0.05,
+          }
         })
-
-        line.forEach(word => {
-          const whitespace = document.createElement("span")
-          whitespace.innerHTML = " "
-
-          span.appendChild(word)
-          span.appendChild(whitespace)
-          // console.log(span, word.innerHTML)
+        
+        splittedH1[0].lines.forEach(line => {
+          // console.log(line)
+          const span = document.createElement("span")
+          const outerSpan = document.createElement("span")
+          const whitespaces = document.querySelectorAll("h1 > .whitespace")
+          whitespaces.forEach(el => {
+            el.remove()
+          })
+  
+          line.forEach(word => {
+            const whitespace = document.createElement("span")
+            whitespace.innerHTML = " "
+  
+            span.appendChild(word)
+            span.appendChild(whitespace)
+            // console.log(span, word.innerHTML)
+          })
+  
+  
+          span.className = "Line"
+          outerSpan.appendChild(span)
+          h1.appendChild(outerSpan)
+  
+          gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+          gsap.set("h1 .word", { y: "100%", display: "inline-block" })
         })
-
-
-        span.className = "Line"
-        outerSpan.appendChild(span)
-        h1.appendChild(outerSpan)
-
-        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
-        gsap.set("h1 .word", { y: "100%", display: "inline-block" })
-      })
-
-      splittedBody[0].lines.forEach(line => {
-        // console.log(line)
-        const span = document.createElement("span")
-        const outerSpan = document.createElement("span")
-        const whitespaces = document.querySelectorAll("h1 > .whitespace")
-        whitespaces.forEach(el => {
-          el.remove()
+  
+        splittedBody[0].lines.forEach(line => {
+          // console.log(line)
+          const span = document.createElement("span")
+          const outerSpan = document.createElement("span")
+          const whitespaces = document.querySelectorAll("h1 > .whitespace")
+          whitespaces.forEach(el => {
+            el.remove()
+          })
+  
+          line.forEach(word => {
+            const whitespace = document.createElement("span")
+            whitespace.innerHTML = " "
+  
+            span.appendChild(word)
+            span.appendChild(whitespace)
+            // console.log(span, word.innerHTML)
+          })
+  
+  
+          span.className = "Line"
+          outerSpan.appendChild(span)
+          body.appendChild(outerSpan)
+  
+          gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+          gsap.set(".Hero p .Line", { y: "100%", display: "block" })
         })
-
-        line.forEach(word => {
-          const whitespace = document.createElement("span")
-          whitespace.innerHTML = " "
-
-          span.appendChild(word)
-          span.appendChild(whitespace)
-          // console.log(span, word.innerHTML)
+  
+  
+        tl.to(splittedH1[0].lines, {
+          delay: 1,
+          onStart: () => {
+            gsap.set("h1", {opacity: 1})
+          }
         })
-
-
-        span.className = "Line"
-        outerSpan.appendChild(span)
-        body.appendChild(outerSpan)
-
-        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
-        gsap.set(".Hero p .Line", { y: "100%", display: "block" })
-      })
-
-
-      tl.to(splittedH1[0].lines, {
-        delay: 1,
-        onStart: () => {
-          gsap.set("h1", {opacity: 1})
-        }
-      })
-
-      tl.to(".Hero p .Line", {
-        onStart: () => {
-          gsap.set(".Hero p ", {opacity: 1})
-        }
-      }, '-=1')
-      
-      tl.to(".Buttons button", {
-        opacity: 1
-      }, '-=1')
-
-      tl.to(".Tools div", {
-        opacity: 1
-      }, '-=1')
-
-      tl.to(".Hero .BottomRight img", {
-        opacity: 1
-      }, 0.5)
+  
+        tl.to(".Hero p .Line", {
+          onStart: () => {
+            gsap.set(".Hero p ", {opacity: 1})
+          }
+        }, '-=1')
+        
+        tl.to(".Buttons button", {
+          opacity: 1
+        }, '-=1')
+  
+        tl.to(".Tools div", {
+          opacity: 1
+        }, '-=1')
+  
+        tl.to(".Hero .BottomRight img", {
+          opacity: 1
+        }, 0.5)
+      }, 500)
     },
     
     initStylesInteractions() {

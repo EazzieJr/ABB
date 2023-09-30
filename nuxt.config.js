@@ -21,7 +21,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/tailwind/tailwind.css', '@/assets/main.css', '@/assets/cursor.css'],
+  css: ['@/assets/tailwind/tailwind.css', '@/assets/main.css', '@/assets/cursor.css', 'splitting/dist/splitting-cells.css', 'splitting/dist/splitting.css'],
 
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
