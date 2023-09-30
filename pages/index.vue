@@ -954,6 +954,8 @@ export default {
       const m2 = gsap.timeline()
       const m3 = gsap.timeline()
 
+      gsap.ticker.fps(60);
+      
       // console.log(marqueeOne.clientWidth, marqueeOne.clientWidth/3)
       m1.to(marqueeOne, {
         x: -(marqueeOne.clientWidth/3 + (base.matches ? 10 : lg.matches ? 14 : 20)),
