@@ -277,11 +277,11 @@ export default {
 			links: [
 				{
 					name: "dribbble",
-					link: "dribbble.com/abb_design"
+					link: "dribbble.com/abbicons"
 				},
 				{
 					name: "instagram",
-					link: "www.instagram.com/abb_icons/"
+					link: "www.instagram.com/abb.icons/"
 				},
 				{
 					name: "linkedin",

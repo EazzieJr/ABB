@@ -1327,10 +1327,10 @@ export default {
       .SwiperContainer {
         @apply -mx-5 lg:-mx-[4.86vw] xl:pl-[0];
         .SwiperProducts {
-          @apply pl-4 lg:pl-[4.86vw];
+          @apply px-4 lg:px-[4.86vw];
 
           .Carousel-cell {
-            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px] w-[276px] h-[322px] lg:w-[440px] lg:h-auto xl:w-[32vw];
+            @apply shrink-0 mr-5 lg:mr-7 xl:mr-[30px] w-[276px] h-[322px] lg:w-[440px] lg:h-auto xl:w-[28vw];
 
             img {
               @apply w-full duration-500;
