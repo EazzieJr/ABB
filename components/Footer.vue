@@ -12,7 +12,7 @@
 					</p>
 				</div>
 
-				<button class="ContactMe">
+				<button @click="toggleModal" class="ContactMe">
 					Contact Me
 				</button>
 			</div>
@@ -268,6 +268,7 @@
 <script>
 import {gsap} from 'gsap/dist/gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { mapMutations } from 'vuex'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -296,6 +297,8 @@ export default {
 	},
 
 	methods: {
+    ...mapMutations(["toggleModal"]),
+
 		initFooterAnimation() {
 			const tl = gsap.timeline({
 				default: { ease: 'none' },

@@ -14,9 +14,9 @@
           </div>
           
           <div class="Buttons start">
-            <button class="DownloadIcon">
+            <a href="https://drive.google.com/uc?export=download&id=1wB_cSFhbh7SRnMQZgZZY-Itac19uYlEB" class="DownloadIcon">
               Download Icons
-            </button>
+            </a>
             
             <button class="ContactMe" @click="toggleModal">
               Contact Me
@@ -709,7 +709,7 @@ export default {
           }
         }, '-=1')
         
-        tl.to(".Buttons button", {
+        tl.to(".Buttons button, .Buttons a", {
           opacity: 1
         }, '-=1')
   
