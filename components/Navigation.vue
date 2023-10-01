@@ -10,9 +10,9 @@
 					Contact Me
 				</button>
 
-				<button class="DownloadIcon">
-					Download Icon
-				</button>
+				<a href="https://drive.google.com/uc?export=download&id=1wB_cSFhbh7SRnMQZgZZY-Itac19uYlEB" target="_blank" class="DownloadIcon">
+					Download Icons
+				</a>
 <!-- 				
 				<button class="MenuBurger">
 					<div class="top"></div>

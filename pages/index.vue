@@ -24,9 +24,9 @@
           </div>
 
           <div class="Tools start">
-            <div v-for="tool in tools" :key="tool.name">
+            <a :href="`https://drive.google.com/uc?export=download&id=${tool.link}`" v-for="tool in tools" :key="tool.name">
               <img :src="`/svg/${tool.name}.svg`" alt="">
-            </div>
+            </a>
           </div>
         </div>
 
@@ -466,15 +466,15 @@ export default {
       tools: [
         {
           name: "figma",
-          link: "/"
+          link: "1OoBUWyAYMsZxwDjCTxzGdbtH9LRFeGQT"
         },
         {
           name: "illustrator",
-          link: "/"
+          link: "1e80oY-5RUE8rVPmjuvoHXAMVLYt81Tcb"
         },
         {
           name: "svg",
-          link: "/"
+          link: "1PDABLptRM3xUFKcLUKD_gLFa9cJVuIMA"
         },
       ],
 
@@ -713,7 +713,7 @@ export default {
           opacity: 1
         }, '-=1')
   
-        tl.to(".Tools div", {
+        tl.to(".Tools a", {
           opacity: 1
         }, '-=1')
   
@@ -1163,7 +1163,7 @@ export default {
         .Tools {
           @apply space-x-9 xl:space-x-[46px];
 
-          > div {
+          > a {
             @apply block opacity-0;
 
             img {
