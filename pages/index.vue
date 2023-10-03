@@ -175,14 +175,39 @@
         </div>
 
         <div class="Controllers between">
-          <div class="Dots start">
-             <button
-              v-for="(el, index) in carousel"
-              :key="index"
-              :class="{ 'active': flkty &&  index === flkty.selectedIndex }"
-              class="Dot"
-              @click="goToSlide(index)"
-            ></button>
+          <div class="Dots">
+            <div class="MobileDots start">
+              <button
+               v-for="(el, index) in carousel"
+               :key="index"
+               :class="{ 'active': flkty &&  index === flkty.selectedIndex }"
+               class="Dot"
+               @click="goToSlide(index)"
+             ></button>
+            </div>
+
+            <div class="DesktopDots start">
+              <button
+                :class="{ 'active': flkty &&  flkty.selectedIndex === 0 }"
+                class="Dot"
+                @click="goToSlide(0)"
+              ></button>
+              <button
+                :class="{ 'active': flkty &&  flkty.selectedIndex === 1 }"
+                class="Dot"
+                @click="goToSlide(1)"
+              ></button>
+              <button
+                :class="{ 'active': flkty &&  flkty.selectedIndex === 2 }"
+                class="Dot"
+                @click="goToSlide(2)"
+              ></button>
+              <button
+                :class="{ 'active': flkty &&  flkty.selectedIndex === 3 }"
+                class="Dot"
+                @click="goToSlide(3)"
+              ></button>
+            </div>
           </div>
 
           <div class="Arrows start">
@@ -193,7 +218,7 @@
               </svg>
             </button>
 
-            <button class="Right center" :class="{ 'active': flkty && flkty.selectedIndex <= 4 }" @click="nextSlide">
+            <button class="Right center" :class="{ 'active': flkty && flkty.selectedIndex <= maxIndex }" @click="nextSlide" :disabled="desktopArrow">
               <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 7.58301H13" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M7 1.58301L13 7.58301L7 13.583" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -354,6 +379,7 @@ export default {
   data() {
     return {
       flkty: null,
+      desktop: null,
       
       products: [
         {
@@ -547,7 +573,23 @@ export default {
   },
 
   computed: {
-    ...mapState(["modalOpened"])
+    ...mapState(["modalOpened"]),
+
+    desktopArrow() {
+      if (this.desktop && this.desktop.matches) {
+        return this.flkty && this.flkty.selectedIndex === 3;
+      } else {
+        return false
+      }
+    },
+
+    maxIndex() {
+      if (this.desktop && this.desktop.matches) {
+        return 2;
+      } else {
+        return 4;
+      }
+    }
   },
 
   watch: {
@@ -1108,6 +1150,8 @@ export default {
   }, 
 
   mounted() {
+    this.desktop = window.matchMedia("(min-width: 1024px)")
+    
     this.animateHero()
     this.initAboutAnimation()
     this.initCursor()
@@ -1354,7 +1398,7 @@ export default {
       }
 
       .Controllers {
-        .Dots {
+        .Dots .MobileDots, .Dots .DesktopDots {
           @apply space-x-3 md:space-x-5;
 
           .Dot {
@@ -1363,6 +1407,14 @@ export default {
             &.active {
               @apply bg-primary
             }
+          }
+
+          &.MobileDots {
+            @apply md:hidden
+          }
+
+          &.DesktopDots {
+            @apply hidden md:flex
           }
         }
 
