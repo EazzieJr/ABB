@@ -44,7 +44,7 @@ nav {
 			}
 
 			.DownloadIcon {
-				@apply text-primary bg-secondary px-4 py-3 xl:px-5 xl:py-[15px] rounded-[10px]
+				@apply text-primary bg-secondary px-4 py-3 xl:px-5 xl:py-[15px] rounded-[10px] !font-interTight md:font-inter
 			}
 			
 			.MenuBurger {

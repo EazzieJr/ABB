@@ -1196,7 +1196,7 @@ export default {
           }
 
           .DownloadIcon {
-            @apply bg-secondary px-4 py-3 xl:px-5 xl:py-4
+            @apply bg-secondary px-4 py-3 xl:px-5 xl:py-4 !font-interTight md:font-inter
           }
 
           .ContactMe {
