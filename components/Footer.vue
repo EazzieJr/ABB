@@ -321,17 +321,17 @@ export default {
 
 		animate() {
 			const icons = document.querySelectorAll(".SvgBg svg > g > g")
+			const mobile = window.matchMedia("(max-width: 768px)")
 
 			const getRandomValue = (min, max) => {
 				return Math.random() * (max - min) + min;
 			}
-
 			icons.forEach(el => {
 				const randomY = getRandomValue(-400, 400);
 
 				// console.log(randomY)
 
-				el.style.transform = `translateY( ${randomY}px)`;
+				el.style.transform = `translateY( ${mobile.matches ? randomY/5 : randomY}px)`;
 			})
 
 			gsap.to(icons, {
