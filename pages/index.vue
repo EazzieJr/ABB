@@ -945,11 +945,13 @@ export default {
 
     animateBranding() {
       const products = document.querySelectorAll('.Branding .Product')
+      const mobile = window.matchMedia("(max-width: 767px)")
       this.textAnim('.Branding', '.Branding .TextAnim span')
 
-      products.forEach((el, index) => {
-        el.addEventListener('mouseover', () => {
-          gsap.to(el.lastChild, {
+      if (!mobile.matches) {
+        products.forEach((el, index) => {
+          el.addEventListener('mouseover', () => {
+            gsap.to(el.lastChild, {
             scale: 1.15,
             ease: "power3.inOut",
             duration: 0.75
@@ -963,9 +965,9 @@ export default {
             duration: 0.75
           })
         })
-      })
+      })}
     },
-
+    
     textAnim(trigger, el, duration) {
       let bigText = document.querySelector(el)
       let word = bigText.innerText
@@ -1596,4 +1598,4 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-</style>
+</style> 
