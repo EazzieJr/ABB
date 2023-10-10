@@ -492,7 +492,7 @@ export default {
       tools: [
         {
           name: "figma",
-          link: "1OoBUWyAYMsZxwDjCTxzGdbtH9LRFeGQT"
+          link: "1zQ3LTHJghkQhhKeTX5L7SoavxuevwYcQ"
         },
         {
           name: "illustrator",
