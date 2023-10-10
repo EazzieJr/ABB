@@ -789,138 +789,124 @@ export default {
     },
 
     initAboutAnimation() {
-      
       const bodies = document.querySelectorAll(".About p")
 
 			const bodyOne = bodies[0]
 			const bodyTwo = bodies[1]
       const bodyThree = bodies[2]
-      
-			const splittedTextOne = this.$splitting({ target: bodyOne, by: "lines" });
-			const splittedTextTwo = this.$splitting({ target: bodyTwo, by: "lines" });
-      const splittedTextThree = this.$splitting({ target: bodyThree, by: "lines" });
 
-      this.textAnim('.About', '.About .TextAnim span')
-
-      const animateLines = (el, trigger) => {
-        gsap.to(el, {
+      setTimeout(() => {
+        const splittedTextOne = this.$splitting({ target: bodyOne, by: "lines" });
+        const splittedTextTwo = this.$splitting({ target: bodyTwo, by: "lines" });
+        const splittedTextThree = this.$splitting({ target: bodyThree, by: "lines" });
+  
+        this.textAnim('.About', '.About .TextAnim span')
+  
+        splittedTextOne[0].lines.forEach(line => {
+          // console.log(line)
+          const span = document.createElement("span")
+          const outerSpan = document.createElement("span")
+          const whitespaces = document.querySelectorAll("p > .whitespace")
+          whitespaces.forEach(el => {
+            el.remove()
+          })
+  
+          line.forEach(word => {
+            const whitespace = document.createElement("span")
+            whitespace.innerHTML = " "
+  
+            span.appendChild(word)
+            span.appendChild(whitespace)
+            // console.log(span, word.innerHTML)
+          })
+  
+  
+          span.className = "Line"
+          outerSpan.appendChild(span)
+          bodyOne.appendChild(outerSpan)
+  
+          gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+          gsap.set(".About p .Line", { y: "100%", display: "block" })
+        })
+  
+        splittedTextTwo[0].lines.forEach(line => {
+          // console.log(line)
+          const span = document.createElement("span")
+          const outerSpan = document.createElement("span")
+          const whitespaces = document.querySelectorAll("p > .whitespace")
+          whitespaces.forEach(el => {
+            el.remove()
+          })
+  
+          line.forEach(word => {
+            const whitespace = document.createElement("span")
+            whitespace.innerHTML = " "
+  
+            span.appendChild(word)
+            span.appendChild(whitespace)
+            // console.log(span, word.innerHTML)
+          })
+  
+  
+          span.className = "Line"
+          outerSpan.appendChild(span)
+          bodyTwo.appendChild(outerSpan)
+  
+          gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+          gsap.set(".About p .Line", { y: "100%", display: "block" })
+        });
+  
+        splittedTextThree[0].lines.forEach(line => {
+          // console.log(line)
+          const span = document.createElement("span")
+          const outerSpan = document.createElement("span")
+          const whitespaces = document.querySelectorAll("p > .whitespace")
+          whitespaces.forEach(el => {
+            el.remove()
+          })
+  
+          line.forEach(word => {
+            const whitespace = document.createElement("span")
+            whitespace.innerHTML = " "
+  
+            span.appendChild(word)
+            span.appendChild(whitespace)
+            // console.log(span, word.innerHTML)
+          })
+  
+  
+          span.className = "Line"
+          outerSpan.appendChild(span)
+          bodyThree.appendChild(outerSpan)
+  
+          gsap.set(outerSpan, { overflow: "hidden", display: "block" })
+          gsap.set(".About p .Line", { y: "100%", display: "block" })
+        })
+  
+        const innerBodies = document.querySelectorAll(".About p > span")
+        const base = window.matchMedia("(max-width: 767px)")
+  
+         gsap.to(".About .TopLeft", {
           scrollTrigger: {
-            trigger: trigger,
-            start: "top 60%",
-            toggleActions: "play none none reset"
-          },
-
-          y: 0,
-          ease: "power4.out",
-          duration: 1,
-          stagger: 0.1
-        })
-      }
-
-      splittedTextOne[0].lines.forEach(line => {
-        // console.log(line)
-        const span = document.createElement("span")
-        const outerSpan = document.createElement("span")
-        const whitespaces = document.querySelectorAll("p > .whitespace")
-        whitespaces.forEach(el => {
-          el.remove()
-        })
-
-        line.forEach(word => {
-          const whitespace = document.createElement("span")
-          whitespace.innerHTML = " "
-
-          span.appendChild(word)
-          span.appendChild(whitespace)
-          // console.log(span, word.innerHTML)
-        })
-
-
-        span.className = "Line"
-        outerSpan.appendChild(span)
-        bodyOne.appendChild(outerSpan)
-
-        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
-        gsap.set(".About p .Line", { y: "100%", display: "block" })
-      })
-
-      splittedTextTwo[0].lines.forEach(line => {
-        // console.log(line)
-        const span = document.createElement("span")
-        const outerSpan = document.createElement("span")
-        const whitespaces = document.querySelectorAll("p > .whitespace")
-        whitespaces.forEach(el => {
-          el.remove()
-        })
-
-        line.forEach(word => {
-          const whitespace = document.createElement("span")
-          whitespace.innerHTML = " "
-
-          span.appendChild(word)
-          span.appendChild(whitespace)
-          // console.log(span, word.innerHTML)
-        })
-
-
-        span.className = "Line"
-        outerSpan.appendChild(span)
-        bodyTwo.appendChild(outerSpan)
-
-        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
-        gsap.set(".About p .Line", { y: "100%", display: "block" })
-      });
-
-      splittedTextThree[0].lines.forEach(line => {
-        // console.log(line)
-        const span = document.createElement("span")
-        const outerSpan = document.createElement("span")
-        const whitespaces = document.querySelectorAll("p > .whitespace")
-        whitespaces.forEach(el => {
-          el.remove()
-        })
-
-        line.forEach(word => {
-          const whitespace = document.createElement("span")
-          whitespace.innerHTML = " "
-
-          span.appendChild(word)
-          span.appendChild(whitespace)
-          // console.log(span, word.innerHTML)
-        })
-
-
-        span.className = "Line"
-        outerSpan.appendChild(span)
-        bodyThree.appendChild(outerSpan)
-
-        gsap.set(outerSpan, { overflow: "hidden", display: "block" })
-        gsap.set(".About p .Line", { y: "100%", display: "block" })
-      })
-
-      const innerBodies = document.querySelectorAll(".About p > span")
-      const base = window.matchMedia("(max-width: 767px)")
-
-       gsap.to(".About .TopLeft", {
-        scrollTrigger: {
-          trigger: ".About .TopLeft",
-          start: base.matches ? "top 70%" : "top 50%",
-          onEnter: () => {
-            innerBodies.forEach((el, index) => {
-              gsap.to(el.children, {
-                y: 0,
-                ease: "power4.out",
-                duration: 1,
-                delay: index * 0.05,
+            trigger: ".About .TopLeft",
+            start: base.matches ? "top 70%" : "top 50%",
+            onEnter: () => {
+              innerBodies.forEach((el, index) => {
+                gsap.to(el.children, {
+                  y: 0,
+                  ease: "power4.out",
+                  duration: 1,
+                  delay: index * 0.05,
+                })
               })
+            }
+           }, onComplete: () => {
+             gsap.to(".About .ContactMe", {
+              opacity: 1
             })
           }
-         }, onComplete: () => {
-           gsap.to(".About .ContactMe", {
-            opacity: 1
-          })
-        }
-      })
+        })
+      }, 3000)
 
       // tl.to(splittedTextTwo[0].lines, {
       //   opacity: 1,
