@@ -12,6 +12,7 @@
     "lintfix": "prettier --write --list-different ."
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@nuxtjs/pwa": "^3.3.5",
     "@studio-freight/lenis": "^1.0.16",
     "core-js": "^3.25.3",

@@ -8,12 +8,27 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxt-boilerplate',
+    title: 'ABB Icons',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: "250+ meticulously designed icons for seamless web, app, and mobile perfection. Suitable for any kind of project now available for download in your favourite format." },
+      { hid: 'keywords', name: 'keywords', content: "ABB, Abb, Abbicons, Icons, ABB Icons, Adobe illustrations, svg, figma, Abbicons figma, Abbicons, Graphics, Carol ugwu, carol, ugwu" },
       { name: 'format-detection', content: 'telephone=no' },
+
+      { hid: 'og:type', name: 'og:type', content: 'website' },
+      { hid: 'og:title', name: 'og:title', content: 'ABB Icons' },
+      { hid: 'og:url', name: 'og:url', content: "https://abbicons.com" },
+      { hid: 'og:site_name', name: 'og:site_name', content: "ABB Icons" },
+      { hid: 'og:image', name: 'og:image', content: "https://res.cloudinary.com/eazzie/image/upload/v1682978528/Cynthia/Home.png" },
+      { hid: 'og:description', name: 'og:description', content: "250+ meticulously designed icons for seamless web, app, and mobile perfection. Suitable for any kind of project now available for download in your favourite format." },
+
+      { hid: 'twitter:site', name: 'twitter:site', content: "@CarolUgwu" },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'ABB Icons' },
+      { hid: 'twitter:card', name: 'twitter:card', content: "summary_large_image" },
+      { hid: 'twitter:image:alt', name: 'twitter:image:alt', content: "An image of the landing page hero" },
+      { hid: 'twitter:image', name: 'twitter:image', content: "https://res.cloudinary.com/eazzie/image/upload/v1682978528/Cynthia/Home.png" },
+      { hid: 'twitter:description', name: 'twitter:description', content: "250+ meticulously designed icons for seamless web, app, and mobile perfection. Suitable for any kind of project now available for download in your favourite format." },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     link: [{ rel: 'stylesheet', href: 'https://unpkg.com/flickity@2/dist/flickity.min.css' }],

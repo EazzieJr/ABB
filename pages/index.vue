@@ -369,6 +369,7 @@ import { gsap } from 'gsap/dist/gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { TextPlugin } from 'gsap/dist/TextPlugin'
 import { mapState, mapMutations } from 'vuex'
+import emailjs from "@emailjs/browser";
 
 MouseFollower.registerGSAP(gsap);
 gsap.registerPlugin(ScrollTrigger, TextPlugin)
@@ -1076,12 +1077,27 @@ export default {
     sendMail() {
       console.log(this.guest)
 
-      this.guest = {
-        name: null,
-        email: null,
-        services: [],
-        message: null
-      }
+      emailjs
+				.send(
+					"service_fjh9yfa",
+					"template_7ghh84l",
+					this.guest,
+					"EJFdGczf4RqYJ7SyR"
+				)
+				.then(
+					(response) => {
+						this.guest = {
+              name: null,
+              email: null,
+              services: [],
+              message: null
+            }
+						console.log("SUCCESS!", response.status, response.text);
+					},
+					 (error) => {
+						console.log("FAILED...", error);
+					}
+				);
     },
 
     removeIndex(index) {
