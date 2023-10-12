@@ -55,8 +55,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    'nuxt-route-meta',
-    '@nuxtjs/toast'
+    'nuxt-route-meta'
   ],
 
   toast: {

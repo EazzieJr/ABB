@@ -1,5 +1,5 @@
 <template>
-  <div class="IndexPage" data-cursor-sprite="">
+  <div class="IndexPage" data-cursor-sprite="">   
     <section class="Hero">
       <div class="Container constraint md:between">
         <div class="TopLeft block">
@@ -268,6 +268,18 @@
           </div>
   
           <div class="Mid">
+            <transition name="fade">
+              <div class="MessageSent col-between" v-if="messageSent">
+                <Lottie
+                  :options="animationOptions"
+                />
+
+                <p>
+                  Message sent!
+                </p>
+              </div>
+            </transition>
+            
             <form action="" @submit.prevent="sendMail" @click.self="closeSelection">
               <div class="Input">
                 <label for="Name">Name</label>
@@ -370,12 +382,18 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { TextPlugin } from 'gsap/dist/TextPlugin'
 import { mapState, mapMutations } from 'vuex'
 import emailjs from "@emailjs/browser";
+import messageSent from '~/lottie/message-sent.json';
+import Lottie from 'vue-lottie/src/lottie.vue'
 
 MouseFollower.registerGSAP(gsap);
 gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
 export default {
   name: 'IndexPage',
+
+  components: {
+    Lottie
+  },
 
   data() {
     return {
@@ -569,7 +587,17 @@ export default {
         }
       ],
 
+      animationOptions: {
+        loop: false,
+        autoplay: true,
+        animationData: messageSent,
+        // rendererSettings: {
+        //   preserveAspectRatio: 'xMidYMid slice'
+        // }
+      },
+
       toggleServices: false,
+      messageSent: false
     }
   },
 
@@ -596,6 +624,10 @@ export default {
   watch: {
     options() {
       this.checkSum()
+    },
+
+    modalOpened() {
+      this.messageSent = false
     }
   },
 
@@ -1105,11 +1137,7 @@ export default {
               message: null
             }
             console.log("SUCCESS!", response.status, response.text);
-            this.$toast.success("Message sent!", {
-              theme: "bubble",
-              position: "top-center",
-              duration: 2000
-            })
+            this.messageSent = true
 					},
           (error) => {
             this.$toast.error("Oops...Something went wrong", {
@@ -1520,7 +1548,15 @@ export default {
       }
 
       .Mid {
-        @apply px-5 xl:px-[30px];
+        @apply px-5 xl:px-[30px] relative;
+
+        .MessageSent {
+          @apply absolute top-0 left-0 bg-white w-full h-full z-50 pb-20;
+
+          p {
+            @apply font-medium text-black xl:text-lg text-center mx-auto
+          }
+        }
 
         form {
           @apply space-y-4 xl:space-y-[22px];
