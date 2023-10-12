@@ -1073,15 +1073,19 @@ export default {
         this.flkty.next();
       }
     },
-
+    
     sendMail() {
-      console.log(this.guest)
+      // Map throught the services and set on a string
+      let newGuest = {...this.guest}
+      const newServices = newGuest.services
+      const services = newServices.map(el => el.name).join(", ")
+      newGuest.services = services
 
       emailjs
 				.send(
 					"service_fjh9yfa",
 					"template_7ghh84l",
-					this.guest,
+					newGuest,
 					"EJFdGczf4RqYJ7SyR"
 				)
 				.then(
@@ -1090,6 +1094,13 @@ export default {
               name: null,
               email: null,
               services: [],
+              message: null
+            }
+
+						newGuest = {
+              name: null,
+              email: null,
+              services: null,
               message: null
             }
 						console.log("SUCCESS!", response.status, response.text);
