@@ -55,8 +55,30 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    'nuxt-route-meta'
+    'nuxt-route-meta',
+    '@nuxtjs/toast'
   ],
+
+  toast: {
+    theme: "bubble",
+    position: 'top-center',
+    register: [ // Register custom toasts
+      {
+        name: 'ab-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      },
+      {
+        name: 'ab-success',
+        message: "Hey, your message is on it's way",
+        options: {
+          type: 'success'
+        }
+      },
+    ]
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

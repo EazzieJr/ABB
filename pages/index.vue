@@ -1081,6 +1081,7 @@ export default {
       const services = newServices.map(el => el.name).join(", ")
       newGuest.services = services
 
+
       emailjs
 				.send(
 					"service_fjh9yfa",
@@ -1103,9 +1104,19 @@ export default {
               services: null,
               message: null
             }
-						console.log("SUCCESS!", response.status, response.text);
+            console.log("SUCCESS!", response.status, response.text);
+            this.$toast.success("Message sent!", {
+              theme: "bubble",
+              position: "top-center",
+              duration: 2000
+            })
 					},
-					 (error) => {
+          (error) => {
+            this.$toast.error("Oops...Something went wrong", {
+              theme: "bubble",
+              position: "top-center",
+              duration: 2000
+            })
 						console.log("FAILED...", error);
 					}
 				);
