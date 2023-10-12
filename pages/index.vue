@@ -1140,11 +1140,6 @@ export default {
             this.messageSent = true
 					},
           (error) => {
-            this.$toast.error("Oops...Something went wrong", {
-              theme: "bubble",
-              position: "top-center",
-              duration: 2000
-            })
 						console.log("FAILED...", error);
 					}
 				);
