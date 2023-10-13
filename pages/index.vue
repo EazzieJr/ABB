@@ -1182,7 +1182,7 @@ export default {
                 services: null,
                 message: null
               },
-              
+
               console.log("SUCCESS!", response.status, response.text);
               this.messageSent = true
             },
@@ -1602,7 +1602,7 @@ export default {
         @apply px-5 xl:px-[30px] relative;
 
         .MessageSent {
-          @apply absolute top-0 left-0 bg-white w-full h-full z-50 pb-20;
+          @apply absolute top-0 left-0 bg-white w-full h-full z-[60] pb-20;
 
           p {
             @apply font-medium text-black xl:text-lg text-center mx-auto
