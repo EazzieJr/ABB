@@ -281,19 +281,19 @@
             </transition>
             
             <form action="" @submit.prevent="sendMail" @click.self="closeSelection">
-              <div class="Input">
+              <div class="Input name" :data-name="errors.name">
                 <label for="Name">Name</label>
   
                 <input type="text" v-model="guest.name" placeholder="Enter name" name="Name">
               </div>
   
-              <div class="Input">
+              <div class="Input email" :data-email="errors.email">
                 <label for="Email">Email</label>
   
                 <input type="text" v-model="guest.email" placeholder="Enter email" name="Email">
               </div>
   
-              <div class="Input">
+              <div class="Input services"  :data-services="errors.services">
                 <label>Services</label>
   
                 <div class="PickServices between" @click.self="toggleServicesSelection">
@@ -343,7 +343,7 @@
                 </div>
               </div>
   
-              <div class="Input">
+              <div class="Input message"  :data-message="errors.message">
                 <label for="Message">Message</label>
   
                 <textarea v-model="guest.message" placeholder="Write here..." name="Message"></textarea>
@@ -569,6 +569,13 @@ export default {
         name: null,
         email: null,
         services: [],
+        message: null
+      },
+
+      errors: {
+        name: null,
+        email: null,
+        services: null,
         message: null
       },
 
@@ -1117,7 +1124,35 @@ export default {
         const services = newServices.map(el => el.name).join(", ")
         newGuest.services = services
   
-  
+        // Check if the guest has all the required fields
+        if (!newGuest.name || !newGuest.email || !newGuest.services || !newGuest.message) {
+          if (!newGuest.name) {
+            this.errors.name = "Please enter your name"
+          } else {
+            this.errors.name = null
+          }
+
+          if (!newGuest.email) {
+            this.errors.email = "Please enter your email"
+          } else {
+            this.errors.email = null
+          }
+
+          if (!newGuest.services) {
+            this.errors.services = "Please select at least one service"
+          } else {
+            this.errors.services = null
+          }
+
+          if (!newGuest.message) {
+            this.errors.message = "Please enter a message"
+          } else {
+            this.errors.message = null
+          }
+
+          return
+        }
+        
         emailjs
           .send(
             "service_fjh9yfa",
@@ -1140,6 +1175,14 @@ export default {
                 services: null,
                 message: null
               }
+
+              this.errors = {
+                name: null,
+                email: null,
+                services: null,
+                message: null
+              },
+              
               console.log("SUCCESS!", response.status, response.text);
               this.messageSent = true
             },
@@ -1570,7 +1613,7 @@ export default {
           @apply space-y-4 xl:space-y-[22px];
 
           .Input {
-            @apply space-y-2 xl:space-y-2.5 w-full;
+            @apply space-y-2 xl:space-y-2.5 w-full relative;
 
             label {
               @apply block text-xs xl:text-sm font-medium !leading-[128.571%] text-primary
@@ -1629,6 +1672,30 @@ export default {
                   }
                 }
               }
+            }
+
+            &.services {
+              @apply z-50;
+            }
+
+            &::after {
+              @apply block text-xs xl:text-sm font-medium !leading-[128.571%] absolute top-0 right-0 text-red-500
+            }
+
+            &.name::after {
+              @apply content-[attr(data-name)]
+            }
+
+            &.email::after {
+              @apply content-[attr(data-email)]
+            }
+
+            &.services::after {
+              @apply content-[attr(data-services)]
+            }
+
+            &.message::after {
+              @apply content-[attr(data-message)]
             }
           }
         }
