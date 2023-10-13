@@ -353,7 +353,7 @@
   
           <div class="Bottom">
             <button class="Send" @click="sendMail">
-              Send
+              {{ messageSent ? 'Done' : 'Send' }}
             </button>
           </div>
         </div>
@@ -1107,42 +1107,46 @@ export default {
     },
     
     sendMail() {
-      // Map throught the services and set on a string
-      let newGuest = {...this.guest}
-      const newServices = newGuest.services
-      const services = newServices.map(el => el.name).join(", ")
-      newGuest.services = services
-
-
-      emailjs
-				.send(
-					"service_fjh9yfa",
-					"template_7ghh84l",
-					newGuest,
-					"EJFdGczf4RqYJ7SyR"
-				)
-				.then(
-					(response) => {
-						this.guest = {
-              name: null,
-              email: null,
-              services: [],
-              message: null
+      if (this.messageSent) {
+        this.toggleModal()
+      } else {
+        // Map throught the services and set on a string
+        let newGuest = {...this.guest}
+        const newServices = newGuest.services
+        const services = newServices.map(el => el.name).join(", ")
+        newGuest.services = services
+  
+  
+        emailjs
+          .send(
+            "service_fjh9yfa",
+            "template_7ghh84l",
+            newGuest,
+            "EJFdGczf4RqYJ7SyR"
+          )
+          .then(
+            (response) => {
+              this.guest = {
+                name: null,
+                email: null,
+                services: [],
+                message: null
+              }
+  
+              newGuest = {
+                name: null,
+                email: null,
+                services: null,
+                message: null
+              }
+              console.log("SUCCESS!", response.status, response.text);
+              this.messageSent = true
+            },
+            (error) => {
+              console.log("FAILED...", error);
             }
-
-						newGuest = {
-              name: null,
-              email: null,
-              services: null,
-              message: null
-            }
-            console.log("SUCCESS!", response.status, response.text);
-            this.messageSent = true
-					},
-          (error) => {
-						console.log("FAILED...", error);
-					}
-				);
+          );
+      }
     },
 
     removeIndex(index) {
