@@ -1267,13 +1267,13 @@ export default {
       }
 
       .BottomRight {
-        @apply grow shrink-0 -mb-[68px] md:mb-0;
+        @apply grow shrink-0 -mb-[21%] md:mb-0;
 
         .Image {
           @apply relative md:-right-[6.24vw] xl:-right-[3vw] 2xl:-right-[6.24vw] md:w-full;
 
           img {
-            @apply w-[340px] h-[346px] md:h-auto md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw] mx-auto lg:mx-0 opacity-0;
+            @apply w-full min-h-[346px] md:h-auto md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw] mx-auto lg:mx-0 opacity-0;
 
             &.Desktop {
               @apply hidden md:block
