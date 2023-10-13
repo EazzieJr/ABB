@@ -1254,7 +1254,7 @@ export default {
         }
 
         .Tools {
-          @apply space-x-9 xl:space-x-[46px];
+          @apply space-x-7 xl:space-x-9;
 
           > a {
             @apply block opacity-0;
