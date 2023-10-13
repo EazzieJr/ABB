@@ -33,7 +33,7 @@
         <div class="BottomRight">
           <div class="Image">
             <img class="Mobile" src="/images/mobile-hero-image.webp" alt="">
-            <img class="Desktop" src="/images/hero-image.webp" alt="">
+            <img class="Desktop" :class="aspectRatio >= 1.74 && aspectRatio <= 1.85 ? 'xl:w-[42vw] -right-[2.5vw] relative' : 'md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw]'" src="/images/hero-image.webp" alt="">
           </div>
         </div>
       </div>
@@ -597,7 +597,8 @@ export default {
       },
 
       toggleServices: false,
-      messageSent: false
+      messageSent: false,
+      aspectRatio: null
     }
   },
 
@@ -618,7 +619,7 @@ export default {
       } else {
         return 4;
       }
-    }
+    },
   },
 
   watch: {
@@ -1199,12 +1200,20 @@ export default {
       this.guest.services = newSelections
 
       // console.log("kk")
-    }
+    },
+
+    getAspectRatio() {
+      const width = window.innerWidth
+      const height = window.innerHeight
+      const aspectRatio = width / height
+
+      this.aspectRatio = aspectRatio
+    },
   }, 
 
   mounted() {
     this.desktop = window.matchMedia("(min-width: 1024px)")
-    
+    this.getAspectRatio()
     this.animateHero()
     this.initAboutAnimation()
     this.initCursor()
@@ -1277,14 +1286,14 @@ export default {
           @apply relative md:-right-[6.24vw] xl:-right-[3vw] 2xl:-right-[6.24vw] md:w-full;
 
           img {
-            @apply w-full min-h-[346px] md:h-auto md:w-[40vw] xl:w-[44vw] 2xl:w-[40vw] mx-auto lg:mx-0 opacity-0;
+            @apply mx-auto lg:mx-0 opacity-0;
 
             &.Desktop {
               @apply hidden md:block
             }
 
             &.Mobile {
-              @apply md:hidden
+              @apply md:hidden min-h-[346px] md:h-auto
             }
           }
         }
