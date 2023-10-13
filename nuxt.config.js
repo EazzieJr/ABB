@@ -8,23 +8,23 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'ABB Icons',
+    title: 'ABB icons',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: "250+ meticulously designed icons for seamless web, app, and mobile perfection. Suitable for any kind of project now available for download in your favourite format." },
-      { hid: 'keywords', name: 'keywords', content: "ABB, Abb, Abbicons, Icons, ABB Icons, Adobe illustrations, svg, figma, Abbicons figma, Abbicons, Graphics, Carol ugwu, carol, ugwu" },
+      { hid: 'keywords', name: 'keywords', content: "ABB, Abb, Abbicons, Icons, ABB icons, Adobe illustrations, svg, figma, Abbicons figma, Abbicons, Graphics, Carol ugwu, carol, ugwu" },
       { name: 'format-detection', content: 'telephone=no' },
 
       { hid: 'og:type', name: 'og:type', content: 'website' },
-      { hid: 'og:title', name: 'og:title', content: 'ABB Icons' },
+      { hid: 'og:title', name: 'og:title', content: 'ABB icons' },
       { hid: 'og:url', name: 'og:url', content: "https://abbicons.com" },
-      { hid: 'og:site_name', name: 'og:site_name', content: "ABB Icons" },
+      { hid: 'og:site_name', name: 'og:site_name', content: "ABB icons" },
       { hid: 'og:image', name: 'og:image', content: "/poster-image.webp" },
       { hid: 'og:description', name: 'og:description', content: "250+ meticulously designed icons for seamless web, app, and mobile perfection. Suitable for any kind of project now available for download in your favourite format." },
 
       { hid: 'twitter:site', name: 'twitter:site', content: "@CarolUgwu" },
-      { hid: 'twitter:title', name: 'twitter:title', content: 'ABB Icons' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'ABB icons' },
       { hid: 'twitter:card', name: 'twitter:card', content: "summary_large_image" },
       { hid: 'twitter:image:alt', name: 'twitter:image:alt', content: "An image of the landing page hero" },
       { hid: 'twitter:image', name: 'twitter:image', content: "/poster-image.webp" },
